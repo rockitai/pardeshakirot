@@ -1,0 +1,934 @@
+<title>פרד"ס חקירות</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* Layout: photo hero on deep petrol, light editorial body, big Rubik headings, hash-routed pages (home, about, services, cases, contact, legal). */
+:root{
+  --bg:#ebeee9;
+  --surface:#f6f7f3;
+  --surface-2:#dde2db;
+  --ink:#0f2229;
+  --ink-2:#435860;
+  --line:#bcc4bd;
+  --deep:#061317;
+  --deep-2:#040d10;
+  --deep-ink:#e8eeea;
+  --deep-mute:#a3b8ba;
+  --deep-line:#1f3a41;
+  --tape:#e3a812;
+  --tape-hi:#f6cd55;
+  --tape-ink:#1a1405;
+  --font:'Rubik','Segoe UI',system-ui,sans-serif;
+  --t-sm:.9rem; --t-base:1.0625rem; --t-lg:1.25rem; --t-xl:1.6rem;
+  --t-2xl:clamp(1.9rem,4vw,3rem); --t-3xl:clamp(2.3rem,5.4vw,4.2rem); --t-4xl:clamp(2.5rem,8vw,6.2rem);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --img-hero:url("{{IMG:hero}}");
+  --img-deep:url("{{IMG:deep}}");
+  --img-cases:url("{{IMG:cases}}");
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0a1a1f; --surface:#102830; --surface-2:#0e2127; --ink:#e6edea; --ink-2:#9db3b5; --line:#24424a;
+    --deep:#040d10; --deep-2:#030a0c; --deep-line:#1a3239;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0a1a1f; --surface:#102830; --surface-2:#0e2127; --ink:#e6edea; --ink-2:#9db3b5; --line:#24424a;
+  --deep:#040d10; --deep-2:#030a0c; --deep-line:#1a3239;
+  color-scheme:dark;
+}
+:root{direction:rtl}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:var(--t-base);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--deep-2)}
+h1,h2,h3{font-family:var(--font);margin:0;text-wrap:balance;font-weight:800;letter-spacing:-.01em}
+p{margin:0;text-wrap:pretty}
+a{color:inherit}
+ul{margin:0;padding:0;list-style:none}
+img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--tape);outline-offset:3px}
+.in{max-width:1220px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band{padding-block:clamp(56px,9vw,112px)}
+.skip{position:absolute;right:-9999px}
+.skip:focus{right:12px;top:12px;z-index:99;background:var(--tape);color:var(--tape-ink);padding:8px 14px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 32px;border-radius:999px;font:700 1.02rem var(--font);text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s var(--ease),background .15s,color .15s,border-color .15s,box-shadow .2s}
+.btn:active{transform:scale(.98)}
+.btn-tape{background:var(--tape);color:var(--tape-ink)}
+.btn-tape:hover{background:var(--tape-hi);box-shadow:0 0 32px -4px #e3a812aa}
+.btn-line{border-color:#9db3b588;color:var(--deep-ink);background:transparent}
+.btn-line:hover{border-color:var(--deep-ink);background:#ffffff14}
+.btn-ink{background:var(--ink);color:var(--bg)}
+.btn-ink:hover{background:var(--ink-2)}
+.btn-sm{min-height:40px;padding:0 20px;font-size:.93rem}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--deep-2) 94%,transparent);backdrop-filter:blur(10px);color:var(--deep-ink);border-bottom:1px solid var(--deep-line)}
+.top .in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:76px}
+.logo{display:block;flex:none}
+.logo img{height:46px;width:auto}
+.menu{display:flex;gap:30px}
+.menu a{text-decoration:none;color:var(--deep-mute);font-weight:500;font-size:.97rem;padding:8px 0;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.menu a:hover,.menu a[aria-current]{color:var(--deep-ink);border-color:var(--tape)}
+.burger{display:none;background:none;border:0;color:var(--deep-ink);width:44px;height:44px;cursor:pointer;padding:0}
+.burger span,.burger span::before,.burger span::after{display:block;width:24px;height:2px;background:currentColor;position:relative;margin:auto;content:""}
+.burger span::before{position:absolute;top:-7px;left:0}
+.burger span::after{position:absolute;top:7px;left:0}
+.topcta{display:inline-flex}
+@media(max-width:900px){
+  .burger{display:block}
+  .menu{display:none;position:absolute;top:76px;left:0;right:0;flex-direction:column;gap:0;background:var(--deep-2);border-bottom:1px solid var(--deep-line);padding:8px max(16px,env(safe-area-inset-right,0px)) 16px}
+  .menu.open{display:flex}
+  .menu a{padding:14px 0;border-bottom:1px solid var(--deep-line);font-size:1.05rem}
+  .topcta{display:none}
+}
+
+/* hero */
+.hero{position:relative;background:var(--deep);color:var(--deep-ink);overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--img-hero) center/cover no-repeat;transform:scaleX(-1)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to left,var(--deep) 4%,color-mix(in srgb,var(--deep) 86%,transparent) 40%,color-mix(in srgb,var(--deep) 25%,transparent) 80%)}
+.hero-copy{padding-block:clamp(60px,10vw,132px) clamp(48px,7vw,84px);max-width:680px}
+.hero small{display:block;color:var(--tape-hi);font-size:var(--t-sm);font-weight:500;margin-bottom:22px}
+.hero h1{font-size:var(--t-3xl);line-height:1.12;margin-bottom:26px}
+.hero .lead{font-size:var(--t-lg);color:#d6e2e2;max-width:56ch;margin-bottom:36px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.creds{position:relative;display:grid;grid-template-columns:repeat(3,1fr);max-width:1220px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-top:1px solid #ffffff2e}
+.creds li{padding:22px 0 26px;padding-inline-end:20px;font-weight:700;font-size:1.05rem;line-height:1.45}
+.creds li+li{padding-inline-start:24px;border-inline-start:1px solid #ffffff2e}
+@media(max-width:860px){
+  .hero::after{background:linear-gradient(to bottom,color-mix(in srgb,var(--deep) 84%,transparent),color-mix(in srgb,var(--deep) 72%,transparent))}
+  .creds{grid-template-columns:1fr}
+  .creds li,.creds li+li{padding-inline:0;border-inline-start:0}
+  .creds li+li{border-top:1px solid #ffffff2e}
+}
+
+/* inner page header */
+.phead{position:relative;background:var(--deep);color:var(--deep-ink);isolation:isolate;overflow:hidden;padding-block:clamp(52px,8vw,104px)}
+.phead::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--ph,var(--img-hero)) center/cover no-repeat}
+.phead::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to left,var(--deep) 8%,color-mix(in srgb,var(--deep) 88%,transparent) 55%,color-mix(in srgb,var(--deep) 60%,transparent))}
+.phead small{display:block;color:var(--tape-hi);font-weight:500;font-size:var(--t-sm);margin-bottom:16px}
+.phead h1{font-size:var(--t-3xl);line-height:1.12;max-width:20ch;margin-bottom:22px}
+.phead .lead{font-size:var(--t-lg);color:#d6e2e2;max-width:62ch}
+.phead .lead+.lead{margin-top:14px}
+
+/* shared blocks */
+.muted-label{display:block;color:var(--ink-2);font-weight:500;font-size:var(--t-sm);margin-bottom:14px}
+.h2{font-size:var(--t-2xl);line-height:1.15}
+.lede{color:var(--ink-2);font-size:var(--t-lg)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:end;margin-bottom:clamp(36px,6vw,64px)}
+.sec-head p{color:var(--ink-2);font-size:var(--t-lg);max-width:52ch}
+.stack{max-width:760px;margin-bottom:clamp(36px,5vw,56px)}
+.stack .h2{margin-bottom:14px}
+.alt{background:var(--surface-2)}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,6vw,88px);align-items:center}
+.split .pic,.split img{border-radius:6px;width:100%}
+.split img{height:auto}
+.pic{background:center/cover no-repeat;min-height:340px;border-radius:6px}
+.split .h2{margin-bottom:18px}
+.split p+p{margin-top:14px}
+.split p{color:var(--ink-2)}
+@media(max-width:860px){.sec-head,.split{grid-template-columns:1fr}}
+.tags{display:flex;flex-wrap:wrap;gap:10px}
+.tags li{border:2px solid var(--ink);border-radius:999px;padding:6px 18px;font-weight:500;font-size:.97rem}
+.deep .tags li{border-color:var(--deep-mute)}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(22px,3vw,40px)}
+.grid3 h3,.grid2 h3{font-size:var(--t-lg);margin-bottom:10px;padding-top:18px;border-top:4px solid var(--ink);line-height:1.3}
+.grid3 p,.grid2 p{color:var(--ink-2)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px clamp(28px,5vw,72px)}
+@media(max-width:860px){.grid3,.grid2{grid-template-columns:1fr}}
+.checks li{position:relative;padding:10px 34px 10px 0;border-bottom:1px solid var(--line);font-weight:500}
+.checks li::before{content:"";position:absolute;right:4px;top:19px;width:12px;height:7px;border-left:3px solid var(--tape);border-bottom:3px solid var(--tape);transform:rotate(-45deg)}
+
+/* home services rows */
+.rows{border-top:2px solid var(--ink)}
+.rows article{display:grid;grid-template-columns:64px minmax(0,5fr) minmax(0,5fr);gap:clamp(18px,3vw,44px);align-items:start;padding:34px 12px;border-bottom:1px solid var(--line);transition:background .25s,padding .3s var(--ease)}
+.rows article:hover{background:var(--surface);padding-inline:28px}
+.rows h3{font-size:clamp(1.3rem,2.2vw,1.75rem);line-height:1.3}
+.rows p{color:var(--ink-2);padding-top:.3em}
+.ico{width:56px;height:56px;border-radius:14px;border:2px solid var(--ink);display:grid;place-items:center;transition:background .25s,color .25s,border-color .25s}
+.rows article:hover .ico{background:var(--tape);border-color:var(--tape);color:var(--tape-ink)}
+.ico svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:860px){.rows article{grid-template-columns:1fr;gap:14px;padding:26px 4px}.rows article:hover{padding-inline:4px}}
+
+/* promise */
+.promise h2{font-size:var(--t-4xl);line-height:1.04;letter-spacing:-.03em;margin-bottom:clamp(36px,6vw,68px);max-width:12ch}
+
+/* deep band w/ photo */
+.deep{background:var(--deep);color:var(--deep-ink);position:relative;isolation:isolate;overflow:hidden}
+.deep.photo::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--img-deep) center/cover no-repeat}
+.deep.photo::after{content:"";position:absolute;inset:0;z-index:-1;background:color-mix(in srgb,var(--deep) 84%,transparent)}
+.exp{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:start}
+.exp .h2{margin-bottom:22px}
+.exp .big{font-weight:500;font-size:clamp(1.15rem,2vw,1.55rem);line-height:1.7;color:#d6e2e2}
+.deep .item{padding:24px 0;border-top:1px solid var(--deep-line)}
+.deep .item h3{font-size:var(--t-lg);margin-bottom:6px}
+.deep .item p{color:var(--deep-mute)}
+@media(max-width:860px){.exp{grid-template-columns:1fr}}
+.pairs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(28px,5vw,72px)}
+.pairs>div{padding:24px 0;border-top:1px solid var(--line)}
+.n{display:block;font-size:.85rem;font-weight:700;color:var(--ink-2);letter-spacing:.08em;margin-bottom:4px}
+.deep .n,.cta-band .n{color:var(--deep-mute)}
+.em{display:block;font-size:1.7rem;line-height:1.3;margin-bottom:6px}
+.pairs h3{font-size:var(--t-lg);margin-bottom:6px;line-height:1.35}
+.pairs p{color:var(--ink-2);font-size:1rem}
+@media(max-width:860px){.pairs{grid-template-columns:1fr}}
+
+/* cards: folder */
+.cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:56px 28px;isolation:isolate}
+.folder{position:relative;background:var(--surface);border-radius:0 16px 16px 16px;padding:34px 26px 26px;display:flex;flex-direction:column;transition:transform .3s var(--ease);box-shadow:0 1px 0 var(--line)}
+.folder::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--bg);border-radius:inherit;transform:rotate(1.6deg);box-shadow:0 1px 0 var(--line)}
+.folder:hover{transform:translateY(-6px)}
+.folder .tab{position:absolute;right:0;top:-36px;height:36px;background:var(--surface);border-radius:14px 14px 0 0;padding:0 20px;display:flex;align-items:center;font-weight:700;font-size:.9rem}
+.folder h3{font-size:var(--t-lg);line-height:1.35;margin-bottom:12px}
+.folder p{color:var(--ink-2);flex:1}
+.folder a{margin-top:22px;font-weight:700;text-decoration:none;align-self:flex-start;padding-bottom:2px;border-bottom:3px solid var(--tape)}
+.all{margin-top:56px;display:flex;justify-content:center}
+@media(max-width:900px){.cases{grid-template-columns:1fr}}
+
+/* about: steps, values */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+.steps li{position:relative;padding-top:64px}
+.steps li::before{content:attr(data-n);position:absolute;top:0;right:0;width:48px;height:48px;border-radius:50%;background:var(--tape);color:var(--tape-ink);font-weight:800;display:grid;place-items:center;font-size:1.2rem}
+.steps li::after{content:"";position:absolute;top:24px;right:60px;left:-28px;border-top:2px dashed var(--line)}
+.steps li:last-child::after{display:none}
+.steps h3{font-size:var(--t-lg);margin-bottom:8px;line-height:1.3}
+.steps p{color:var(--ink-2);font-size:1rem}
+@media(max-width:900px){.steps{grid-template-columns:1fr}.steps li::after{display:none}}
+
+/* services page */
+.svc-card{background:var(--surface);border-radius:14px;padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:12px}
+.svc-card h3{font-size:var(--t-lg);line-height:1.3}
+.svc-card p{color:var(--ink-2)}
+.svc-card.lead-card{grid-column:1/-1;background:var(--deep);color:var(--deep-ink)}
+.svc-card.lead-card p{color:var(--deep-mute);max-width:70ch}
+.svc-card.lead-card .checks li{border-color:var(--deep-line)}
+.badge{align-self:flex-start;background:var(--tape);color:var(--tape-ink);font-weight:700;font-size:.8rem;padding:2px 12px;border-radius:999px}
+.svc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media(max-width:760px){.svc-grid{grid-template-columns:1fr}}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.stats div{border-top:4px solid var(--tape);padding-top:14px}
+.stats b{display:block;font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:800;line-height:1.1}
+.stats span{color:var(--deep-mute)}
+.subs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(28px,5vw,72px)}
+.subs>div{padding:22px 0;border-top:1px solid var(--line)}
+.subs h3{font-size:1.15rem;margin-bottom:6px}
+.subs p{color:var(--ink-2);font-size:1rem}
+@media(max-width:760px){.subs,.stats{grid-template-columns:1fr}}
+
+/* case full */
+.case-full{background:var(--surface);border-radius:0 18px 18px 18px;padding:clamp(24px,4vw,48px);margin-top:64px;position:relative}
+.case-full .tab{position:absolute;right:0;top:-38px;height:38px;background:var(--surface);border-radius:14px 14px 0 0;padding:0 22px;display:flex;align-items:center;font-weight:700;font-size:.92rem}
+.case-full h2{font-size:var(--t-2xl);line-height:1.2;margin-bottom:14px}
+.case-full .intro{color:var(--ink-2);font-size:var(--t-lg);max-width:70ch;margin-bottom:26px}
+.meta{display:flex;flex-wrap:wrap;gap:12px 40px;padding:18px 0;border-block:1px solid var(--line);margin-bottom:12px}
+.meta dt{font-size:var(--t-sm);color:var(--ink-2)}
+.meta dd{margin:0;font-weight:700}
+.sect{display:grid;grid-template-columns:200px minmax(0,1fr);gap:12px 36px;padding:24px 0;border-bottom:1px solid var(--line)}
+.sect h3{font-size:1.1rem}
+.sect p{color:var(--ink-2)}
+.sect.res{border-bottom:0}
+blockquote{margin:28px 0 0;padding:22px 26px;background:var(--deep);color:var(--deep-ink);border-radius:12px;border-inline-start:6px solid var(--tape)}
+blockquote p{font-size:var(--t-lg);line-height:1.6}
+blockquote footer{background:none;padding:0;margin-top:10px;color:var(--deep-mute);font-size:.92rem}
+@media(max-width:760px){.sect{grid-template-columns:1fr}}
+
+/* contact + forms */
+.contact{background:var(--deep);color:var(--deep-ink);position:relative;overflow:hidden}
+.contact-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(32px,6vw,96px);align-items:start}
+.contact .h2{font-size:var(--t-3xl);margin-bottom:18px;line-height:1.1}
+.contact .sub{color:#d6e2e2;font-size:var(--t-lg);margin-bottom:30px}
+.reach{display:grid;gap:8px;margin-bottom:34px;font-size:1.5rem;font-weight:800}
+.reach a{text-decoration:none;border-bottom:3px solid var(--tape);justify-self:start}
+.hours h3{font:500 var(--t-sm) var(--font);color:var(--deep-mute);margin-bottom:10px}
+.hours dl{margin:0;display:grid;grid-template-columns:auto auto;max-width:300px;gap:2px 40px;justify-content:start}
+.hours dt{color:var(--deep-mute)}
+.hours dd{margin:0;font-weight:500}
+form{background:var(--surface);color:var(--ink);border-radius:20px;padding:clamp(24px,4vw,42px);box-shadow:0 40px 80px -40px #000}
+form h3{font-size:var(--t-xl);margin-bottom:6px;line-height:1.25}
+form .fsub{color:var(--ink-2);margin-bottom:24px}
+label{display:block;font-weight:500;font-size:.93rem;margin-bottom:6px}
+input[type=text],input[type=tel],input[type=email],textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:13px 15px;margin-bottom:16px;transition:border-color .15s,box-shadow .15s}
+input:focus,textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 4px #e3a81240}
+textarea{min-height:110px;resize:vertical}
+.consent{display:flex;gap:10px;align-items:flex-start;font-weight:400;margin-bottom:18px}
+.consent input{margin-top:6px;accent-color:var(--tape)}
+form .btn{width:100%}
+.secure{margin-top:14px;text-align:center;color:var(--ink-2);font-size:var(--t-sm)}
+.sent{margin-top:20px;padding:18px;border-radius:14px;background:var(--surface-2);display:grid;gap:12px}
+.sent p{font-size:.97rem}
+.sent textarea{min-height:120px;margin:0;font-size:.92rem}
+.sent .row2{display:flex;gap:10px;flex-wrap:wrap}
+@media(max-width:860px){.contact-grid{grid-template-columns:1fr}}
+.channels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.channel{background:var(--surface);border-radius:14px;padding:26px}
+.channel h3{font-size:var(--t-lg);margin-bottom:4px}
+.channel .val{display:block;font-weight:800;font-size:1.3rem;margin:6px 0;text-decoration:none}
+.channel p{color:var(--ink-2);font-size:.97rem}
+@media(max-width:860px){.channels{grid-template-columns:1fr}}
+.cta-band{background:var(--deep);color:var(--deep-ink);text-align:center}
+.cta-band h2{font-size:var(--t-2xl);margin-bottom:14px;max-width:24ch;margin-inline:auto}
+.cta-band p{color:#d6e2e2;font-size:var(--t-lg);max-width:64ch;margin:0 auto 28px}
+
+/* legal docs */
+.doc{max-width:760px}
+.doc .upd{color:var(--ink-2);margin-bottom:24px}
+.doc h2{font-size:1.45rem;margin:38px 0 10px}
+.doc p{margin-bottom:12px;color:var(--ink-2)}
+.doc ul{margin:0 0 14px;padding-inline-start:22px;list-style:disc;color:var(--ink-2)}
+.doc li{margin-bottom:6px}
+.doc strong{color:var(--ink)}
+
+footer.site{background:var(--deep-2);color:var(--deep-ink);padding-block:56px 30px;padding-bottom:max(30px,env(safe-area-inset-bottom,0px))}
+.fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;padding-bottom:36px;border-bottom:1px solid var(--deep-line)}
+.fgrid img{height:56px;width:auto;margin-bottom:14px}
+footer.site h3{font:500 var(--t-sm) var(--font);color:var(--deep-mute);margin-bottom:14px;letter-spacing:0}
+footer.site p{color:#d6e2e2}
+footer.site ul{display:grid;gap:8px}
+footer.site a{text-decoration:none}
+footer.site a:hover{color:var(--tape)}
+.fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:22px;color:var(--deep-mute);font-size:.9rem}
+.fbot nav{display:flex;gap:18px;flex-wrap:wrap}
+.wa{position:fixed;z-index:40;left:max(16px,env(safe-area-inset-left,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));background:var(--tape);color:var(--tape-ink);font-weight:700;text-decoration:none;border-radius:999px;padding:13px 24px;box-shadow:0 12px 28px -8px #000b}
+@media(max-width:760px){.fgrid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+
+<div lang="he" dir="rtl">
+<a class="skip" href="#maincontent">דלג לתוכן הראשי</a>
+
+<header class="top">
+  <div class="in">
+    <a class="logo" href="#home"><img src="{{IMG:logo}}" alt="פרד״ס חקירות — חקירות ומודיעין עסקי" width="170" height="46"></a>
+    <nav class="menu" id="menu" aria-label="ניווט ראשי">
+      <a href="#home" data-nav="home">בית</a>
+      <a href="#about" data-nav="about">אודות המשרד</a>
+      <a href="#services" data-nav="services">שירותים</a>
+      <a href="#cases" data-nav="cases">מקרים</a>
+      <a href="#contact" data-nav="contact">צור קשר</a>
+    </nav>
+    <a class="btn btn-tape btn-sm topcta" href="#contact">צור קשר</a>
+    <button class="burger" id="burger" type="button" aria-label="תפריט" aria-expanded="false" aria-controls="menu"><span></span></button>
+  </div>
+</header>
+
+<main id="maincontent">
+
+<!-- ============ HOME ============ -->
+<div data-view="home">
+  <section class="hero">
+    <div class="in">
+      <div class="hero-copy">
+        <small>חקירות פרטיות ומודיעין עסקי</small>
+        <h1>פרד"ס חקירות — חקירות פרטיות &amp; מודיעין עסקי</h1>
+        <p class="lead">משרד חקירות מורשה מטעם משרד המשפטים, המתמחה בבירורים אישיים, חקירות כלכליות, איתור נכסים ומעטפת מודיעינית מלאה עבור לקוחות פרטיים, חברות, רואי חשבון ומשרדי עורכי דין.</p>
+        <div class="cta">
+          <a class="btn btn-tape" href="#services">השירותים שלנו</a>
+          <a class="btn btn-line" href="#contact">צרו קשר</a>
+        </div>
+      </div>
+    </div>
+    <ul class="creds"><li>מורשה משרד המשפטים</li><li>פריסה ארצית ופעילות בינלאומית</li><li>ממצאים קבילים בערכאות משפטיות</li></ul>
+  </section>
+
+  <section class="band">
+    <div class="in">
+      <div class="sec-head">
+        <div>
+          <span class="muted-label">תחומי פעילות</span>
+          <h2 class="h2">שירותי חקירות ומודיעין מקיפים</h2>
+        </div>
+        <p>פרד"ס חקירות היא חברת חקירות פרטיות מורשית, המתמחה בחקירות פיננסיות, עסקיות ומשפטיות — תוך שימוש בכלי מודיעין מתקדמים וחוקרי שטח מנוסים. כל חקירה מועברת ללקוח כדוח מאומת, מוכן לשימוש.</p>
+      </div>
+      <div class="rows">
+        <article>
+          <div class="ico"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="14" cy="14" r="8"/><path d="M20 20l8 8"/></svg></div>
+          <h3><span class="n">01</span>מודיעין עסקי &amp; בדיקת נאותות</h3>
+          <p>בחינה מקיפה לפני שותפויות עסקיות, השקעות, מיזוגים ורכישות — לצמצום סיכונים והגנה על ההון העסקי.</p>
+        </article>
+        <article>
+          <div class="ico"><svg viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="9" rx="10" ry="4"/><path d="M6 9v7c0 2.2 4.5 4 10 4s10-1.8 10-4V9"/><path d="M6 16v7c0 2.2 4.5 4 10 4s10-1.8 10-4v-7"/></svg></div>
+          <h3><span class="n">02</span>חקירות פיננסיות, הרמת מסך התאגיד &amp; איתור נכסים</h3>
+          <p>בדיקת יכולת כלכלית, איתור נכסים מוסתרים, חשיפת הונאות ומעילות — עם שיטות חקירה מוכחות ותיעוד ראייתי מלא.</p>
+        </article>
+        <article>
+          <div class="ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 3h11l6 6v20H8z"/><path d="M19 3v6h6M12 15h9M12 20h9M12 25h5"/></svg></div>
+          <h3><span class="n">03</span>בניית תשתית ראייתית &amp; איסוף ראיות לצורכי ליטיגציה</h3>
+          <p>שירותים לעו"ד ורו"ח — איסוף שיטתי של ראיות קבילות משפטית, ניתוח מסמכים והכנת תיק ראייתי מובנה להליכים משפטיים.</p>
+        </article>
+        <article>
+          <div class="ico"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3l11 4v8c0 7-4.5 11.5-11 14C9.5 26.5 5 22 5 15V7z"/><path d="M11 16l3.5 3.5L21 12.5"/></svg></div>
+          <h3><span class="n">04</span>חקירות סייבר, מעילות &amp; הונאות ארגוניות</h3>
+          <p>חשיפת מעילות, הונאות פנימיות, הדלפות מידע וריגול תעשייתי — בשיטות חקירה דיגיטליות מתקדמות המותאמות לסביבה הארגונית.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt promise">
+    <div class="in">
+      <h2>שקט נפשי מבוסס עובדות</h2>
+      <div class="grid3">
+        <div><h3>ראיות קבילות בבית משפט</h3><p>כל חקירה מבוצעת לפי החוק ומלווה בדוח חקירה מסודר ומוכן להצגה בערכאות משפטיות.</p></div>
+        <div><h3>צוות יוצאי קהילת המודיעין</h3><p>החוקרים והאנליסטים שלנו הם בעלי רקע ביטחוני וניסיון עשיר בחקירות סייבר, מודיעין רשת (OSINT) ואיסוף מידע מורכב.</p></div>
+        <div><h3>דיסקרטיות וסודיות מסחרית</h3><p>שמירה מוחלטת על סודיות הלקוחות ואבטחה קפדנית של כל תוצרי וממצאי החקירה.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="in">
+      <div class="split" style="margin-bottom:clamp(40px,6vw,72px)">
+        <div>
+          <span class="muted-label">אמינות ורישוי</span>
+          <h2 class="h2">פתרונות חקירה ומודיעין מותאמים אישית</h2>
+          <p style="margin-top:18px">פרד"ס חקירות משרתת את הציבור הרחב לצד המגזר העסקי והמשפטי. המשרד מספק מענה מדויק, דיסקרטי ואסטרטגי לכל לקוח המתמודד עם אתגר מורכב — עם ניסיון מוכח, יכולות מודיעין מתקדמות ותוצאות שניתן להציג בכל פורום.</p>
+        </div>
+        <img src="{{IMG:trust}}" alt="משרד חקירות מקצועי — פרד״ס חקירות" width="800" height="597" loading="lazy">
+      </div>
+      <div class="pairs">
+        <div><h3>רישיון מלא ממשרד המשפטים</h3><p>רישיון מלא ממשרד המשפטים — ערובה לפעילות חוקית, אחראית ומבוקרת. כל פעילות המשרד מתבצעת בגדרי החוק ובמסגרת הרגולציה הרלוונטית.</p></div>
+        <div><h3>שירותי חקירה ומודיעין מקיפים</h3><p>המשרד עוסק בין השאר בחקירות כלכליות, עסקיות ומשפטיות — כולל בדיקת נאותות, מודיעין עסקי, חקירות פנימיות ואיתור נכסים.</p></div>
+        <div><h3>טכנולוגיה דיגיטלית בשירות מומחיות אנושית</h3><p>כלי OSINT מתקדמים, ניתוח דיגיטלי ועיבוד נתונים — בשילוב חוקרים מנוסים בעלי רקע מודיעיני, לתוצאות חד משמעיות.</p></div>
+        <div><h3>דיסקרטיות מוחלטת בכל שלב</h3><p>הטיפול בכל פנייה, חקירה וממצא מתבצע בסודיות מוחלטת ובאבטחה קפדנית, המונעת זליגת מידע.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band deep photo">
+    <div class="in exp">
+      <div>
+        <h2 class="h2">ניסיון מבצעי — שטח ומודיעין</h2>
+        <p class="big">פעילות המשרד מבוססת על שנות ניסיון מבצעי רבות בעולמות המודיעין והחקירות. רקע מקצועי מעמיק זה מבטיח ניהול תיק מדויק, הבנה נרחבת של זירות פעולה מגוונות, ממצאים מבוססים וראיות חותכות שאינן משתמעות לשתי פנים</p>
+      </div>
+      <div>
+        <div class="item"><h3>רישיון ממשרד המשפטים</h3><p>פרד"ס חקירות פועלת תחת רישיון מלא של משרד המשפטים — ערובה לפעילות חוקית, אחראית ומפוקחת.</p></div>
+        <div class="item"><h3>כיסוי בינלאומי</h3><p>פעילות המשרד משתרעת על פני ישראל ומדינות נוספות — עם רשת אנליסטים ואמצעי חקירה המותאמים לחקירות בינלאומיות מורכבות.</p></div>
+        <div class="item"><h3>צוות מודיעין מנוסה</h3><p>אנליסטים עם רקע מוכח במערכת הביטחון הישראלית — מיומנים באיסוף מידע, ניתוח נתונים ועבודת שטח.</p></div>
+        <div class="item"><h3>פרוטוקול סודיות מחמיר</h3><p>כל לקוח, כל תיק וכל ממצא מוגנים תחת מדיניות סודיות קפדנית — ללא חריגים וללא פשרות.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="in">
+      <div class="stack" style="margin-bottom:64px">
+        <h2 class="h2">מקרי בוחן מהשטח</h2>
+        <p class="lede">דוגמאות מייצגות מעבודתנו בחקירות כלכליות, גניבות פנימיות ומודיעין עסקי</p>
+      </div>
+      <div class="cases">
+        <article class="folder"><span class="tab">חקירות כלכליות</span><h3><span class="n">01</span>חקירת אובדן מלאי – חשיפת כשל טכני והסרת חשד</h3><p>כיצד חקירה מדויקת חשפה שהאובדן נגרם מכשל טכני ולא ממעילה, והשיבה את האמון בארגון.</p><a href="#cases">קרא עוד ←</a></article>
+        <article class="folder"><span class="tab">גניבה פנימית</span><h3><span class="n">02</span>חקירת גניבה פנימית – חשיפת מעילה שיטתית במערך הלוגיסטי</h3><p>איתור ראש צוות לוגיסטיקה שניצל את תפקידו לגניבה שיטתית של מכשירים יקרי ערך.</p><a href="#cases">קרא עוד ←</a></article>
+        <article class="folder"><span class="tab">מודיעין עסקי</span><h3><span class="n">03</span>חקירת סכסוך עסקי – חשיפת ניגוד עניינים בפרויקט נדל"ן</h3><p>חשיפת נבחר ציבור שפעל בניגוד עניינים חמור לטובת חברה מתחרה.</p><a href="#cases">קרא עוד ←</a></article>
+      </div>
+      <div class="all"><a class="btn btn-ink" href="#cases">לכל מקרי הבוחן ←</a></div>
+    </div>
+  </section>
+
+  <section class="band contact">
+    <div class="in contact-grid">
+      <div>
+        <h2 class="h2">להתייעצות ראשונית ודיסקרטית ללא התחייבות</h2>
+        <p class="sub">השאירו פרטים ונחזור אליכם בהקדם</p>
+        <div class="reach">
+          <a href="mailto:info@prdsbi.com">info@prdsbi.com</a>
+          <a href="tel:+972543975210" dir="ltr">0543975210</a>
+        </div>
+        <div class="hours">
+          <h3>שעות פעילות</h3>
+          <dl>
+            <dt>יום ראשון</dt><dd>24 שעות</dd><dt>יום שני</dt><dd>24 שעות</dd><dt>יום שלישי</dt><dd>24 שעות</dd><dt>יום רביעי</dt><dd>24 שעות</dd><dt>יום חמישי</dt><dd>24 שעות</dd><dt>יום שישי</dt><dd>24 שעות</dd><dt>יום שבת</dt><dd>סגור</dd>
+          </dl>
+        </div>
+      </div>
+      <form class="lead-form" novalidate>
+        <h3>להתייעצות ראשונית ודיסקרטית ללא התחייבות</h3>
+        <p class="fsub">השאירו פרטים ונחזור אליכם בהקדם</p>
+        <label for="h-name">שם מלא *</label>
+        <input id="h-name" name="name" type="text" required autocomplete="name">
+        <label for="h-phone">טלפון *</label>
+        <input id="h-phone" name="phone" type="tel" required autocomplete="tel">
+        <label for="h-email">דוא״ל *</label>
+        <input id="h-email" name="email" type="email" required autocomplete="email">
+        <label for="h-msg">הודעה (אופציונלי)</label>
+        <textarea id="h-msg" name="message"></textarea>
+        <button class="btn btn-ink" type="submit">שליחה</button>
+        <p class="secure">המידע מוצפן ונשמר תחת חיסיון מלא.</p>
+        <div class="sent" hidden>
+          <p class="sent-note"></p>
+          <textarea class="sent-text" readonly aria-label="נוסח ההודעה"></textarea>
+          <div class="row2"><a class="btn btn-tape btn-sm sent-mail" href="mailto:info@prdsbi.com">פתיחה במייל</a><button class="btn btn-ink btn-sm sent-copy" type="button">העתקת ההודעה</button></div>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<div data-view="about" hidden>
+  <section class="phead" style="--ph:var(--img-hero)">
+    <div class="in">
+      <small>אודות המשרד</small>
+      <h1>פתרונות חקירה ומודיעין ללקוחות פרטיים, עסקיים ומשפטיים</h1>
+      <p class="lead">פרד"ס חקירות היא חברת חקירות פרטיות רשומה, המנוהלת על ידי יאיר בלום – חוקר פרטי מורשה מטעם משרד המשפטים, המתמחה במתן שירותי חקירה ומודיעין מתקדמים ללקוחות פרטיים, חברות וגופים משפטיים.</p>
+      <p class="lead">אנו מספקים מענה מדויק, דיסקרטי ואסטרטגי לכל אתגר מורכב – החל מבירורים אישיים ודיני משפחה, דרך אבטחת מידע ואינטגריטי עסקי, ועד לראיות קבילות לערכאות משפטיות.</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="in">
+      <ul class="tags" style="margin-bottom:24px">
+        <li>🪪 רישיון משרד המשפטים</li><li>חוקר פרטי מוסמך ומורשה</li><li>צוות ותיקי מערכת הביטחון</li><li>אנליסטים ומומחי מודיעין</li><li>חקירות בארץ ובחו"ל</li>
+      </ul>
+      <p class="muted-label" style="font-size:1rem;margin:0 0 8px">ללקוחות פרטיים, עורכי דין ומגזר עסקי</p>
+      <p class="lede" style="margin-bottom:48px">חקירות פרטיות ומודיעין עסקי.<br>שיקול דעת, דיוק ואמינות בכל תיק.</p>
+      <div class="split">
+        <img src="{{IMG:about}}" alt="שולחן עבודה במשרד חקירות" width="448" height="600" loading="lazy">
+        <div>
+          <span class="muted-label">על המשרד</span>
+          <h2 class="h2">מומחיות מודיעינית. ניסיון שטח. תוצאות מוכחות.</h2>
+          <p style="font-weight:700;color:var(--ink)">פרד"ס חקירות</p>
+          <p>היא חברת חקירות מורשית, הפועלת בישראל ועל הבמה הבינלאומית.</p>
+          <p>החברה מספקת שירותים מקצועיים, עצמאיים ואמינים למגוון רחב של לקוחות, ארגונים ואנשי מקצוע. אנו מתמחים בהשגת מידע מדויק, חשיפת האמת, ומתן פתרונות חקירה מקיפים לכל אתגר, יהיה מורכב ככל שיהיה.</p>
+          <p>הצוות המקצועי של המשרד מורכב מחוקרים פרטיים מנוסים ואנליסטים בוגרי יחידות מודיעין וביטחון של מערכת הביטחון הישראלית, בעלי ניסיון מבצעי רחב בניתוח מידע, חקירות פיננסיות ומעקב אחר זרימות הון. גישתנו משלבת שיטות מודיעין מוכחות עם כלים טכנולוגיים מתקדמים, ומאפשרת לנו לפעול ביעילות הן בישראל והן במדינות שונות ברחבי העולם.</p>
+          <p>כל תיק מטופל בפיקוח ישיר ומלא, תוך שמירה על סודיות מוחלטת, עמידה בדרישות החוק ומחויבות בלתי מתפשרת לאיכות. אנו מאמינים כי חקירה אמיתית מתחילה בהבנה עמוקה של הצרכים הפרטיים והמשפטיים של הלקוח — ומסתיימת בממצאים ברורים, מתועדים ובני-שימוש.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="in">
+      <div class="stack">
+        <h2 class="h2">ערכי המשרד</h2>
+        <p class="lede">העקרונות המנחים כל חקירה והחלטה מקצועית שאנו מקבלים</p>
+      </div>
+      <div class="pairs">
+        <div><h3><span class="n">01</span>דיסקרטיות מוחלטת</h3><p>כל מידע המגיע אלינו נשמר במסגרת חיסיון מלא ובלתי מתפשר. אנו מתנהלים בשיקול דעת מרבי בכל שלב — מהפגישה הראשונה ועד מסירת הדוח הסופי — ומבטיחים כי זהות לקוחותינו, נסיבות הפנייה ותכני החקירה לא יגיעו לידיים זרות.</p></div>
+        <div><h3><span class="n">02</span>מקצועיות ללא פשרות</h3><p>בין אם מדובר באיתור נכסים מוסתרים, חשיפת מעילות פנימיות, או ביצוע בירורים אישיים דיסקרטיים — הצוות שלנו משלב מומחיות מקהילת המודיעין עם מתודולוגיות שטח מתקדמות, כדי לספק ראיות ברורות ומאומתות לכל אתגר אישי, משפטי או תאגידי.</p></div>
+        <div><h3><span class="n">03</span>שקיפות מול הלקוח</h3><p>אנו מאמינים שלקוח מעודכן הוא לקוח בטוח. לכן אנו מתקשרים בבהירות על מסגרות הזמן, היקף העבודה, ממצאי הביניים וגבולות האפשרי. לא מבטיחים מה שאין בידינו לקיים, ומוסרים תמיד תמונה מלאה ואמינה — גם כאשר התשובה אינה מה שהלקוח ציפה לשמוע.</p></div>
+        <div><h3><span class="n">04</span>חשיבה אסטרטגית</h3><p>כל חקירה מנוהלת כמשימה מודיעינית: מיפוי מוקדם, הגדרת מטרות, בחירת מתודולוגיה מדויקת, וניתוח ממצאים שמאפשר ללקוח לקבל החלטות מושכלות. הממצאים שלנו הם כלי עבודה אסטרטגי — לא רק דוח.</p></div>
+        <div><h3><span class="n">05</span>אנושיות &amp; רגישות</h3><p>מאחורי כל תיק עומד אדם — לעיתים במצב לחץ, חוסר ודאות, או פגיעה עסקית. אנו מתייחסים לכל לקוח בכבוד, בהקשבה ובאמפתיה אמיתית. הגישה האנושית שלנו אינה מנוגדת לחדות המקצועית — היא חלק בלתי נפרד ממנה, ומאפשרת שיתוף פעולה מיטבי לאורך כל הדרך.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="in">
+      <div class="grid3" style="margin-bottom:clamp(40px,6vw,72px)">
+        <div><h3><span class="em">🔍</span>חקירות פרטיות — כשצריך לדעת את האמת</h3><p>בני זוג, בני משפחה, שכנים, שותפים עסקיים — כשמשהו לא מסתדר ואתם צריכים לדעת את האמת, אנחנו כאן. בדיסקרטיות מלאה ובלי שיפוטיות.</p></div>
+        <div><h3><span class="em">🤝</span>גישה אישית לכל פנייה</h3><p>כל פנייה מטופלת באופן אישי ומכבד. אנחנו מקשיבים, מסבירים מה אפשרי ומה לא — ומגישים תשובות ברורות, לא דוחות מסובכים.</p></div>
+        <div><h3><span class="em">⚖️</span>חקירות חוקיות ומורשות</h3><p>המשרד פועל ברישיון מטעם משרד המשפטים. כל חקירה מתבצעת במסגרת החוק — כך שהממצאים שלנו תקפים גם בהליכים משפטיים במידת הצורך.</p></div>
+      </div>
+      <div class="stack"><h2 class="h2">תחומי המומחיות שלנו</h2></div>
+      <ul class="tags">
+        <li>💑 בירור אמינות בן/בת זוג</li><li>👣 מעקבים ואיתור אנשים</li><li>🔍 בדיקת רקע על אנשים</li><li>💼 איתור נכסים ורכוש</li><li>🏛️ תמיכה בהליכים משפטיים</li><li>🌐 חקירות בינלאומיות</li><li>🏢 חקירות פיננסיות ועסקיות</li><li>📊 מודיעין עסקי ובדיקת נאותות</li><li>🛡️ חקירות סייבר ומעקב דיגיטלי</li><li>רישיון משרד המשפטים</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="in">
+      <div class="stack">
+        <span class="muted-label">מתודולוגיה מקצועית</span>
+        <h2 class="h2">תהליך העבודה שלנו</h2>
+        <p class="lede">כל חקירה מתנהלת לפי מתודולוגיה מובנית, שקופה ומשפטית — מהפגישה הראשונה ועד לממצאים הסופיים. כך מבטיחים אנו דיסקרטיות מוחלטת, מקצועיות ותמיכה אסטרטגית בכל שלב.</p>
+      </div>
+      <ol class="steps" style="list-style:none;margin:0;padding:0">
+        <li data-n="01"><h3>הערכה ראשונית חסויה</h3><p>פגישת היכרות מסודרת ודיסקרטית בה נשמע את הצורך, נבחן את היקף הבקשה ונאמת את ישימותה המשפטית. כל מידע שנמסר נשמר בסודיות מוחלטת.</p></li>
+        <li data-n="02"><h3>הגדרת היקף ואסטרטגיה</h3><p>מגדירים יחד את מטרות החקירה, מסגרת הזמן, המשאבים הנדרשים ואמות המידה להצלחה. בשלב זה מוסכם על תכנית עבודה כתובה ומחייבת — בדיקת נאותות לחברות בישראל ובחו״ל כלולה לפי הצורך.</p></li>
+        <li data-n="03"><h3>חקירה ואיסוף מידע</h3><p>במידה וצריך, צוות האנליסטים, יוצאי מערכת הביטחון, מבצע את החקירה הכלכלית, המודיעין העסקי, המעקב הדיגיטלי ואיסוף הראיות — תוך שמירה קפדנית על החוק ועל עקרונות האתיקה המקצועית.</p></li>
+        <li data-n="04"><h3>ממצאים והנחיה אסטרטגית</h3><p>מגישים דוח ממצאים מובנה, ברור ומעשי — המתאים לשימוש משפטי, עסקי או ניהולי. ליווי אישי של יאיר בלום מבטיח שהמסקנות יתורגמו להחלטות מושכלות.</p></li>
+      </ol>
+    </div>
+  </section>
+
+</div>
+
+<!-- ============ SERVICES ============ -->
+<div data-view="services" hidden>
+  <section class="phead" style="--ph:var(--img-hero)">
+    <div class="in">
+      <small>שירותים</small>
+      <h1>שירותי חקירות ומודיעין לעסקים, עורכי דין וללקוחות פרטיים</h1>
+      <p class="lead">פרד"ס חקירות מספקת שירותי חקירה ומודיעין מקצועיים ללקוחות פרטיים ועסקיים.</p>
+      <p class="lead">כל פנייה — בין אם אישית, פיננסית או תאגידית — מטופלת בשיקול דעת מוחלט, בהתאם קפדני לדרישות החוק, ומועברת כדוח מאומת הקביל בבית משפט.</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="in">
+      <div class="svc-grid">
+        <article class="svc-card lead-card">
+          <span class="badge">01 השירות המוביל</span>
+          <h3>בירורים פרטיים &amp; בדיקות רקע אישיות</h3>
+          <p>בדיקות רקע דיסקרטיות, בירורים אישיים ואימות מידע לעניינים פרטיים ואזרחיים. אנו מספקים תשובות ברורות וחסויות ליחידים שזקוקים לדעת את האמת לפני קבלת החלטות אישיות.</p>
+          <ul class="checks"><li>בדיקת נאמנות ואימות אישי של בני זוג</li><li>בדיקות רקע מקיפות על יחידים</li><li>איתור אנשים ויצירת קשר מחדש עם מכרים</li></ul>
+        </article>
+        <article class="svc-card"><h3><span class="n">02</span>תמיכה בדיני משפחה &amp; הליכים משפטיים</h3><p>שירותי חקירה ואיסוף ראיות התומכים בהליכים משפטיים, דיני משפחה וסכסוכים אזרחיים. ראיות קבילות בבית המשפט שנאספו תוך עמידה מלאה בכל דרישות החוק.</p></article>
+        <article class="svc-card"><h3><span class="n">03</span>חקירות פיננסיות &amp; איתור נכסים</h3><p>איתור נכסים מוסתרים, הערכת יכולת פיננסית וחשיפת הונאות — הן ליחידים והן לתאגידים. אנו חושפים את המציאות הפיננסית האמיתית שמאחורי חזות עסקית ואישית.</p></article>
+        <article class="svc-card"><h3><span class="n">04</span>מודיעין עסקי &amp; בדיקת נאותות</h3><p>בחינה מקיפה לפני שותפויות עסקיות, השקעות ועסקאות תאגידיות — בישראל ובחו"ל. החלטות מבוססות עובדות המגובות בדיווח מקצועי ומפורט.</p></article>
+        <article class="svc-card"><h3><span class="n">05</span>חקירות סייבר &amp; דיגיטליות</h3><p>חשיפת הונאות פנימיות, הדלפות מידע ועקבות דיגיטליות באמצעות כלי OSINT מתקדמים. זיהוי השמצות, בריונות ברשת וזהויות אנונימיות ברשת עם ראיות דיגיטליות קבילות.</p></article>
+      </div>
+      <p class="lede" style="margin-top:36px;text-align:center"><strong style="color:var(--ink)">לפנייה ראשונית דיסקרטית</strong><br>כל פנייה מטופלת בסודיות מלאה</p>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="in">
+      <div class="split" style="margin-bottom:clamp(40px,6vw,72px)">
+        <div>
+          <span class="muted-label">מודיעין עסקי</span>
+          <h2 class="h2">מודיעין עסקי — ידע שמוביל להחלטות נכונות</h2>
+          <p style="margin-top:18px">בעידן שבו מידע הוא הנכס האסטרטגי החשוב ביותר, פרד"ס חקירות מעניקה ללקוחותיה יתרון תחרותי משמעותי. אנו מבצעים איסוף, ניתוח ועיבוד מודיעין עסקי ברמה מקצועית גבוהה — הן בישראל והן בחו"ל — תוך שמירה על שיקול דעת מוחלט ועמידה מלאה בכל הדרישות החוקיות.</p>
+          <p>שירות המודיעין העסקי שלנו מיועד למנהלים בכירים, משקיעים, עורכי דין ותאגידים הנדרשים לתמונת מצב אמינה לפני קבלת החלטות קריטיות. הצוות שלנו, הכולל אנליסטים יוצאי מערכת הביטחון, מביא עמו מתודולוגיה מודיעינית מוכחת לעולם העסקי.</p>
+        </div>
+        <div class="pic" role="img" aria-label="חוקר מנתח מפות ונתונים על מסכים" style="background-image:var(--img-deep)"></div>
+      </div>
+      <div class="subs">
+        <div><h3>איסוף מודיעין עסקי ופיננסי</h3><p>מיפוי מקיף של פעילות עסקית, מבנה בעלות, מצב פיננסי, היסטוריית תאגידית ויחסי גומלין בין גורמים עסקיים — בישראל ובמדינות רבות בעולם.</p></div>
+        <div><h3>מודיעין אסטרטגי ותחרותי</h3><p>ניתוח מתחרים, שותפים פוטנציאליים ושחקנים בשוק — לצורך קבלת החלטות השקעה, כניסה לשוק חדש, או הערכת סיכונים בעסקאות אסטרטגיות.</p></div>
+        <div><h3>בדיקת נאותות לחברות בישראל ובחו"ל</h3><p>Due Diligence מקיף לפני שותפויות, מיזוגים, רכישות והשקעות — כולל בדיקת רקע פיננסי, משפטי ותדמיתי של הצד השני לעסקה.</p></div>
+        <div><h3>מיפוי מוניטין וקשרים</h3><p>בדיקת מוניטין, זיהוי קשרים עסקיים ואישיים, חשיפת ניגודי עניינים וסיכונים תדמיתיים — לפני כניסה לכל שותפות עסקית משמעותית.</p></div>
+        <div><h3>מודיעין טרום-עסקה</h3><p>איסוף מידע ממוקד לתמיכה בהחלטות מורכבות — כולל זיהוי נכסים, בעלי עניין נסתרים, תביעות משפטיות תלויות ועומדות, ועוד.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band deep">
+    <div class="in">
+      <div class="split">
+        <div>
+          <h2 class="h2" style="margin-bottom:6px">ניתוח מידע ברמה מודיעינית</h2>
+          <h3 style="font-size:var(--t-lg);margin:18px 0 8px">מתודולוגיה מודיעינית</h3>
+          <p style="color:var(--deep-mute)">הצוות שלנו מיישם גישות מודיעיניות מוכחות שפותחו בשדה — OSINT, HUMINT ומקורות מסחריים — לאיסוף תמונת מצב מלאה ואמינה.</p>
+          <ul class="tags" style="margin-top:18px"><li>OSINT</li><li>ניתוח פיננסי</li><li>מיפוי רשתות</li></ul>
+          <h3 style="font-size:var(--t-lg);margin:28px 0 8px">זמינות &amp; שיקול דעת</h3>
+          <p style="color:var(--deep-mute)">כל חקירת מודיעין עסקי מתבצעת בסודיות מוחלטת. הדוחות מועברים ישירות ללקוח בלבד, ללא שמירת עותקים חיצוניים.</p>
+        </div>
+        <div class="stats" style="margin-top:0;grid-template-columns:1fr">
+          <div><b>100%</b><span>דיסקרטיות</span></div>
+          <div><b>בינ"ל</b><span>כיסוי גלובלי</span></div>
+          <div><b>רשוי</b><span>משרד המשפטים</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="in">
+      <div class="stack">
+        <h2 class="h2">תחומי החקירה והמודיעין העסקי</h2>
+        <p class="lede">פרד"ס חקירות מציע שירותי חקירה פרטית ומודיעין עסקי ללקוחות פרטיים ועסקיים כאחד — בישראל ובחו"ל. כל שירות מותאם לצורך הספציפי ומבוצע בדיסקרטיות מלאה.</p>
+      </div>
+      <div class="pairs">
+        <div><h3>חקירות כלכליות</h3><p>בדיקת יכולת כלכלית ואיתנות פיננסית, חשיפת הונאות ומעילות, ניתוח תזרים כספי חשוד ואיתור נכסים מוסתרים. אנו מספקים תמונה כלכלית מלאה ומהימנה לקבלת החלטות מושכלות.</p></div>
+        <div><h3>בדיקת נאותות — Due Diligence</h3><p>בחינה מעמיקה לפני שותפויות עסקיות, השקעות, מיזוגים ורכישות. אנו בוחנים את הרקע הפיננסי, המשפטי והמוניטין של הצדדים, ומגישים דוחות ברורים ומפורטים לקבלת החלטה בטוחה.</p></div>
+        <div><h3>סקר סיכונים עסקי</h3><p>זיהוי נקודות תורפה ארגוניות לפני שהן הופכות לנזק. אנו סוקרים חשיפות פנימיות וחיצוניות, מעריכים סיכוני שותפים וספקים, ומספקים המלצות מעשיות לחיזוק ההגנה העסקית.</p></div>
+        <div><h3>חקירות פנימיות — ריגול תעשייתי</h3><p>חשיפת גניבות, מעילות, הדלפות מידע וריגול תעשייתי בתוך הארגון. חקירותינו מתנהלות בסודיות מוחלטת, תוך שמירה על המשכיות עסקית ועמידה בדרישות משפטיות ורגולטוריות.</p></div>
+        <div><h3>מעקבים — אנליסטים ועבודת שטח</h3><p>מעקב פיזי וטכנולוגי המשלב אנליסטים מנוסים יוצאי מערכת הביטחון עם חוקרי שטח מומחים — לתמונה מלאה ומאומתת. תיעוד מוסמך ומהימן לשימוש בהליכים משפטיים ועסקיים.</p></div>
+        <div><h3>חקירות אינטרנט ודיגיטל</h3><p>זיהוי מקורות השמצה, בריונות ברשת וחשיפת זהויות אנונימיות ברשתות החברתיות ובפורומים. אנו פועלים בשיטות מתקדמות לאיסוף ראיות דיגיטליות קבילות בבית משפט.</p></div>
+        <div><h3>איתור נכסים וחייבים</h3><p>איתור נכסים מוסתרים, חשבונות בנק, נדל"ן, כלי רכב ועסקים של חייבים בישראל ובחו"ל. שירותנו מסייע לנושים, לעורכי דין ולחברות לממש זכויותיהם ולגבות חובות.</p></div>
+        <div><h3>חקירות נדל"ן</h3><p>בדיקת רקע מקיפה על נכסים, בעלויות, שעבודים, מחלוקות ועסקאות חשודות. אנו חוקרים היסטוריית בעלות, זיהוי צדדים קשורים ומאמתים מידע לפני עסקאות נדל"ן משמעותיות.</p></div>
+        <div><h3>בדיקות רקע מקיפות</h3><p>בדיקות רקע מעמיקות על אנשי עסקים, מנהלים בכירים ועסקים — בישראל ובחו"ל. אנו בוחנים עבר פלילי, מוניטין, קשרים עסקיים ועמידה ברגולציה לפני גיוס, שותפות או השקעה.</p></div>
+        <div><h3>איתור אנשים</h3><p>איתור מקצועי של אנשים שאבד קשר עמם — חייבים, יורשים, עדים, שותפים לשעבר ועוד. שימוש בשיטות OSINT מתקדמות ובעבודת שטח לאיתור מהיר, מדויק ודיסקרטי.</p></div>
+        <div><h3>חקירות בזמן סכסוכים עסקיים</h3><p>תמיכה חקירתית מלאה בעת סכסוכים בין שותפים עסקיים, תביעות מסחריות ומחלוקות ניהוליות. איסוף ראיות, חשיפת פעולות נסתרות ותיעוד מוסמך לשימוש בהליכים משפטיים.</p></div>
+        <div><h3>בדיקת בני זוג לפני חתונה</h3><p>בדיקת רקע מקיפה ודיסקרטית לפני נישואים — כולל עבר פלילי, מצב אישי ומשפחתי, חובות ומצב כלכלי, ואמינות כללית. מתבצעת בסודיות מוחלטת ובמהירות.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="in">
+      <div class="grid2" style="margin-bottom:56px">
+        <div><span class="muted-label">שירות ייעודי לעורכי דין</span><h3 style="border:0;padding:0">שירותים לעורכי דין — איסוף ראיות ותמיכה בהליכים משפטיים</h3><p style="margin-top:12px">פרד"ס חקירות מעניק תמיכה מקצועית מלאה לעורכי דין ולמשרדי עורכי דין: איסוף ראיות קבילות, חקירת עדים, אימות עובדות שנויות במחלוקת, ותיעוד מפורט לתיקי בית משפט. כל פעולותינו מתבצעות בהתאם לדרישות החוק הישראלי ועומדות בסטנדרטים הגבוהים ביותר של קבילות ראייתית.</p></div>
+        <div><span class="muted-label">כיסוי בינלאומי</span><h3 style="border:0;padding:0">חקירות ובדיקות רקע בישראל ובחו"ל</h3><p style="margin-top:12px">באמצעות רשת קשרים בינלאומית ושיתופי פעולה עם גורמי מודיעין מקצועיים ברחבי העולם, אנו מבצעים בדיקות נאותות, חקירות כלכליות ובדיקות רקע מקיפות על אנשים ועסקים מחוץ לישראל — באירופה, בצפון אמריקה ובשווקים מתפתחים. כל מידע נאסף כחוק ומוגש בדוח מובנה ומקצועי.</p></div>
+      </div>
+      <div class="stack"><h2 class="h2">מסגרת מקצועית, חוקית ודיסקרטית</h2><p class="lede">פרד"ס חקירות פועל בהתאם לכל דרישות הרישוי, החוק והאתיקה המקצועית — ומחויב לאמות מידה הגבוהות ביותר בתחום החקירות הפרטיות והמודיעין העסקי.</p></div>
+      <div class="grid3">
+        <div><h3>חוקר פרטי רשוי — משרד המשפטים</h3><p>המשרד מנוהל על ידי יאיר בלום, חוקר פרטי רשוי מטעם משרד המשפטים, הפועל בהתאם לחוק חוקרים פרטיים ושירותי שמירה. כל פעילות החקירות הפרטיות העסקיות שלנו מתבצעת במסגרת הרישיון המלא, תוך עמידה מלאה בדרישות הרגולציה הישראלית. אנו נושאים באחריות מקצועית מלאה לכל שלב בתהליך החקירה — מהמנדט הראשוני ועד להגשת הממצאים.</p></div>
+        <div><h3>דיסקרטיות מוחלטת בטיפול במידע רגיש</h3><p>כל מידע המועבר אלינו — בין אם במסגרת בדיקת נאותות, חקירה פנימית ארגונית, או חקירות כלכליות — מטופל בסודיות מלאה ומוחלטת. אנו מחויבים להסכמי סודיות (NDA) עם כל לקוח, ומקפידים על פרוטוקולי אבטחת מידע מחמירים לאורך כל שלבי העבודה. הדיסקרטיות אינה רק ערך — היא אמת מידה מבצעית בכל פרויקט.</p></div>
+        <div><h3>מיקוד בלעדי בחקירות עסקיות, כלכליות ומשפטיות</h3><p>פרד"ס חקירות מתמחה בתחום העסקי, הכלכלי, המשפטי והאישי. שירותינו כוללים מודיעין עסקי, חקירות כלכליות, בדיקות רקע על אנשי עסקים, איתור אנשים ונכסים, חקירות בזמן סכסוכים עסקיים, מעקבים בשילוב אנליסטים ועבודת שטח, חשיפת ריגול תעשייתי, ובדיקת בני זוג לפני חתונה — כולם מבוצעים בגבולות החוק ובאמצעים חוקיים בלבד. מקפידים כי כל פעולה חקירתית עומדת בדרישות הדין הישראלי.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band cta-band"><div class="in"><a class="btn btn-tape" href="#contact">צרו קשר לייעוץ ראשוני</a></div></section>
+</div>
+
+<!-- ============ CASES ============ -->
+<div data-view="cases" hidden>
+  <section class="phead" style="--ph:var(--img-cases)">
+    <div class="in">
+      <small>פרד"ס חקירות · תיקי עיון</small>
+      <h1>חקירות שמדברות בעצמן</h1>
+      <p class="lead">מקרים מהשטח: הניתוח, הראיות והשורה התחתונה.</p>
+      <ul class="tags deep" style="margin:26px 0"><li style="border-color:#ffffff66">רישיון משרד המשפטים</li><li style="border-color:#ffffff66">סודיות מוחלטת מובטחת</li></ul>
+      <a class="btn btn-tape" href="#contact">צרו קשר לייעוץ</a>
+    </div>
+  </section>
+
+  <section class="band alt" style="padding-top:clamp(72px,10vw,120px)">
+    <div class="in">
+      <div class="stack" style="margin-bottom:0"><span class="muted-label">מקרי בוחן</span><h2 class="h2">תיקים נבחרים</h2></div>
+
+      <article class="case-full">
+        <span class="tab">אובדן מלאי וסיכונים</span>
+        <h2><span class="n">01</span>חקירת אובדן מלאי - חשיפת כשל טכני והסרת חשד</h2>
+        <p class="intro">חברה מובילה בתחום המשקאות התמודדה עם היעלמות עקבית של מלאי אלכוהול בהיקף נרחב, ללא עדים או קצוות חוט ברורים. המשרד התבקש לבצע חקירה מקיפה כדי לאתר את מקור הכשל, לספק תמונת מצב מדויקת ולהשיב את השקט המקצועי לארגון.</p>
+        <dl class="meta"><div><dt>תחום</dt><dd>ניהול סיכונים וחקירות מורכבות</dd></div><div><dt>היקף</dt><dd>ארצי (מפעל ייצור)</dd></div></dl>
+        <div class="sect"><h3>רקע המקרה</h3><p>חברה מובילה בתחום המשקאות גילתה כי כמות משמעותית של מוצרי אלכוהול נעלמה מחזורי הייצור ללא כל הסבר ברור. מעבר לחשיפה הפיננסית החמורה, אי-הוודאות יצרה נטל כבד וחשד זוחל כלפי צוות העובדים וההנהלה, דבר שאיים לפגוע אנושות במרקם היחסים ובתרבות הארגונית שנבנתה לאורך שנים.</p></div>
+        <div class="sect"><h3>מטרת הבדיקה</h3><p>לאתר באופן מוחלט ובלתי תלוי את מקור אובדן המלאי, לבחון האם מדובר בגורם אנושי או בכשל מערכתי, ולספק להנהלה ראיות חותכות ומבוססות שיאפשרו לקבל החלטות מתוך שקט נפשי וודאות מלאה.</p></div>
+        <div class="sect"><h3>מה נעשה בפועל</h3><p>ביצענו שחזור שיטתי של האירועים וסקירה מקצה לקצה של כל שלבי הייצור. הפעילות כללה ניתוח נתונים תפעוליים על פני מחזורי ייצור מרובים, בשילוב בדיקות פיזיות טכנולוגיות ומדוקדקות של סביבת העבודה.</p></div>
+        <div class="sect"><h3>ממצאים מרכזיים</h3><p>החקירה שללה לחלוטין מעורבות אנושית או פלילית מצד העובדים. בבדיקה הטכנית אותרו שני ראשי מילוי פגומים במכונת הביקבוק שגרמו לדליפה סמויה ועקבית במהלך הפסקות עבודה שגרתיות. בשל מבנה רצפת הייצור, הנוזל שדלף נספג ונוקז ישירות מבלי להשאיר עקבות גלויים לעין, דבר שהצטבר לפער מספרי משמעותי לאורך חודשים.</p></div>
+        <div class="sect res"><h3>תוצאה</h3><p>עם הצגת הממצאים המבוססים, מקור האובדן הפיננסי נחשף וטופל באופן מיידי. התוצאה המשמעותית ביותר עבור הבעלים הייתה הסרת החשד המעיק מעל אנשי הארגון והשבת האמון המלא והשקט המקצועי לחברה - עדות לעיקרון המוביל של המשרד: לא כל חקירה מסתיימת באשמה, ולפעמים ההישג הגדול ביותר הוא הוכחת חפותם של אנשים באופן חד-משמעי.</p></div>
+        <blockquote><p>"ההקלה הייתה מיידית. דו"ח החקירה לא רק עצר את הדימום הפיננסי, אלא בעיקר הסיר ענן כבד של חשד והחזיר את האמון המלא בצוות העובדים שלי."</p><footer>— מסקנת הלקוח לאחר קבלת הדוח</footer></blockquote>
+      </article>
+
+      <article class="case-full">
+        <span class="tab">גניבה פנימית ויושרת עובדים</span>
+        <h2><span class="n">02</span>חקירת גניבה פנימית - חשיפת מעילה שיטתית במערך הלוגיסטי</h2>
+        <p class="intro">חברה גדולה המפעילה מועדון מסחר אלקטרוני וצרכנות גילתה כי מכשיר נייד נעלם מהמחסן המרכזי שלה. אירוע שנראה תחילה כנקודתי חשף במהרה חשד לתוכנית שיטתית ומתמשכת. התבקשנו לבצע חקירה מקיפה וממוקדת כדי לאתר את האחראים ולחשוף את מנגנון הפעולה.</p>
+        <dl class="meta"><div><dt>תחום</dt><dd>אמינות עובדים וניהול סיכונים</dd></div><div><dt>היקף</dt><dd>ארצי (מטה ולוגיסטיקה)</dd></div></dl>
+        <div class="sect"><h3>רקע המקרה</h3><p>היעלמותו של מכשיר נייד בודד מהמחסן המרכזי של חברת מסחר אלקטרוני העלתה את החשד כי לא מדובר באירוע מקרי, אלא בתוכנית פעולה שיטתית שהוסתרה במשך חודשים ארוכים. האתגר המרכזי היה היעדר מוחלט של רישומי מלאי רשמיים עבור הסחורה החסרה, דבר שמנע את האפשרות לאתר את מקור הכשל באמצעים קונבנציונליים.</p></div>
+        <div class="sect"><h3>מטרת הבדיקה</h3><p>למקד את החשד מתוך רשימה של שמונה עובדים בעלי גישה למחסן, לבצע בירור עומק מקיף, ולגבש ראיות חותכות וחד-משמעיות שיוכיחו מי עומד מאחורי היעלמות המלאי ובאיזו שיטה פעל.</p></div>
+        <div class="sect"><h3>מה נעשה בפועל</h3><p>צוות המשרד ביצע מחקר מודיעיני וטכנולוגי נרחב (OSINT) על כלל החשודים, תוך הצלבת נתונים ופעילות דיגיטלית. אינדיקטורים אלו אפשרו לצמצם את המיקוד לשני עובדים מרכזיים בלבד. בהמשך לכך, נערכו ראיונות אסטרטגיים ומבניים לכלל המעורבים, אשר נתמכו בבדיקות פוליגרף מקצועיות לאישוש הממצאים.</p></div>
+        <div class="sect"><h3>ממצאים מרכזיים</h3><p>החקירה העלתה כי ראש צוות הלוגיסטיקה - אשר החזיק בסמכות מלאה ובעמדת אמון רגישה על כניסת ויציאת הסחורות - ניצל את תפקידו כדי ליירט באופן שיטתי מכשירים חדשים מיד עם הגעתם, עוד לפני שנרשמו במערכות המלאי של החברה. המכשירים נמכרו באופן פרטי ללא השארת עקבות ניירת, תוך דיכוי מוחלט של מסמכי הקבלה.</p></div>
+        <div class="sect res"><h3>תוצאה</h3><p>בזכות השילוב בין מודיעין דיגיטלי מתקדם לראיונות פרונטליים ממוקדים, המעילה השיטתית נחשפה במלואה והופסקה לחלוטין. להנהלת החברה הוגש דו"ח ממצאים חותך המאפשר נקיטת צעדים משפטיים ומשמעתיים מלאים, לצד המלצות לתיקון פרצות האבטחה במערך הלוגיסטי.</p></div>
+        <blockquote><p>"הידיעה שמי שאחראי על מניעת האובדן הוא זה שניהל את המעילה הייתה קשה, אך הדו"ח המדויק שקיבלנו סיפק לנו ראיות חותכות, שקט נפשי ויכולת לפעול משפטית באופן מיידי."</p><footer>— מסקנת הלקוח לאחר קבלת הדו"ח</footer></blockquote>
+      </article>
+
+      <article class="case-full">
+        <span class="tab">סכסוכים עסקיים ומודיעין תחרותי</span>
+        <h2><span class="n">03</span>חקירת סכסוך עסקי - חשיפת ניגוד עניינים והטיית פרויקטים בשוק הנדל"ן</h2>
+        <p class="intro">חברת נדל"ן ויזמות נתקלה בחסמים מתמשכים ובחוסר יכולת לזכות ולבצע פרויקטים ביישוב ספציפי, בעקבות התנגדות של גורם מוניציפלי בעל השפעה. המשרד התבקש לבצע חקירה מקיפה כדי להבין את המניעים מאחורי חסמים אלו ולבחון האם שיקולים זרים או אינטרסים סמויים עומדים מאחורי קבלת ההחלטות.</p>
+        <dl class="meta"><div><dt>תחום</dt><dd>מודיעין תחרותי וחקירות OSINT</dd></div><div><dt>היקף</dt><dd>ארצי (מגזר נדל"ן ורשויות מקומיות)</dd></div></dl>
+        <div class="sect"><h3>רקע המקרה</h3><p>חברת נדל"ן מובילה מצאה את עצמה מודרת שוב ושוב מהזדמנויות עסקיות ומביצוע פרויקטים ביישוב מסוים, בשל מה שנראה כהתנגדות עקבית ומכוונת מצד נבחר ציבור מקומי. החברה נדרשה לגלות את הסיבה האמיתית לחסמים אלו, כדי להבין האם היא מתמודדת עם תחרות הוגנת או עם פעילות בלתי חוקית המונעת ממנה לפעול בשטח.</p></div>
+        <div class="sect"><h3>מטרת הבדיקה</h3><p>למפות את מכלול קשריו, זיקותיו ופעילותו העסקית של נשוא החקירה, במטרה לאתר אינטרסים אישיים או מסחריים סמויים שיכולים להסביר את התנגדותו לחברת הנדל"ן ואת חסימת הפרויקטים שלה באזור.</p></div>
+        <div class="sect"><h3>מה נעשה בפועל</h3><p>צוות המשרד ביצע חקירת עומק מודיעינית מבוססת מקורות גלויים (OSINT) וסריקה של מאגרי מידע מסחריים ופיננסיים. החקירה כללה הצלבת רישומי עסקים, ניתוח קשרים דיגיטליים, פרוטוקולים של ועדות רשמיות ונוכחות תקשורתית, לצד בחינה מדוקדקת של הגופים והחברות הפועלים ומבצעים פרויקטים ציבוריים באותו מרחב גאוגרפי.</p></div>
+        <div class="sect"><h3>ממצאים מרכזיים</h3><p>החקירה חשפה כי נבחר הציבור פועל שלא כדין ובניגוד עניינים חמור: במקביל לתפקידו הציבורי המשפיע על אישור פרויקטים ותשתיות, הוא משמש בפועל כיזם בשירותה של חברה מתחרה הישירה לחברת הנדל"ן (מזמינת העבודה). עוד עלה כי קשריו עם החברה המתחרה אדוקים וכוללים מעורבות ישירה בפרויקטים באזור, בעוד שלא נמצאה כל הצהרת ניגוד עניינים פומבית כנדרש בחוק לגבי פעילות זו.</p></div>
+        <div class="sect res"><h3>תוצאה</h3><p>הדו"ח של המשרד העניק לחברת הנדל"ן את "האקדח המעשן" - הוכחה חותכת ומבוססת ראיות לכך שהחסמים המקצועיים מולם עמדה נבעו מאינטרס עסקי זר ומפעילות בלתי חוקית של נשוא החקירה לטובת החברה המתחרה. מידע אסטרטגי זה סיפק לחברה יתרון משפטי ועסקי מכריע בסכסוך, ופתח בפניה את הדרך לפעול בערוצים המנהליים והמשפטיים הרלוונטיים כדי להסיר את החסמים ולהגן על זכויותיה.</p></div>
+        <blockquote><p>"בזכות הדו"ח של המשרד הבנו שלא הפסדנו בתחרות הוגנת, אלא נחסמנו על ידי גורם שפעל בניגוד עניינים חמור עבור המתחרים שלנו. הראיות שקיבלנו שינו לחלוטין את מאזן הכוחות בסכסוך."</p><footer>— מסקנת הלקוח לאחר קבלת הדו"ח</footer></blockquote>
+      </article>
+    </div>
+  </section>
+
+  <section class="band cta-band"><div class="in"><p style="font-weight:700;margin-bottom:28px">כל תיק מטופל בסודיות מוחלטת, ממוקד במטרה, ומגובה בניסיון מוכח.</p><h2>לפגישת ייעוץ ראשונית</h2><h3 style="font-size:var(--t-lg);margin:0 0 14px">לתיאום פגישת ייעוץ</h3><p>לשיחת ייעוץ חסויה ובחינת דרכי הפעולה בעניינכם, צרו עמנו קשר.</p><div class="cta" style="justify-content:center"><a class="btn btn-tape" href="#contact">צרו קשר</a><a class="btn btn-line" href="#services">השירותים שלנו</a></div><p style="margin-top:24px;font-size:var(--t-sm)">כל פנייה מטופלת בסודיות מוחלטת בהתאם לחוק הגנת הפרטיות</p></div></section>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<div data-view="contact" hidden>
+  <section class="phead" style="--ph:var(--img-hero)">
+    <div class="in">
+      <small>צור קשר</small>
+      <h1>פנייה דיסקרטית, טיפול מקצועי</h1>
+      <p class="lead">ניתן לפנות אלינו בכל עניין הנוגע לחקירות פרטיות, עסקיות, כלכליות ומשפטיות.</p>
+      <p class="lead">כל פנייה מטופלת בסודיות מוחלטת, החל מהרגע הראשון. המשרד פועל ברישיון מלא של משרד המשפטים, ומחויב לסטנדרטים המחמירים ביותר של שיקול דעת מקצועי ואמינות.</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="in contact-grid" style="color:var(--ink)">
+      <form class="lead-form" novalidate>
+        <h3>פנייה חסויה למשרד</h3>
+        <p class="fsub">כל פנייה מטופלת בדיסקרטיות מלאה ובמקצועיות גבוהה. נחזור אליכם בהקדם האפשרי.</p>
+        <label for="c-name">שם מלא</label>
+        <input id="c-name" name="name" type="text" required autocomplete="name">
+        <label for="c-email">כתובת דוא"ל</label>
+        <input id="c-email" name="email" type="email" required autocomplete="email">
+        <label for="c-phone">טלפון</label>
+        <input id="c-phone" name="phone" type="tel" required autocomplete="tel">
+        <label for="c-msg">פרטי הפנייה</label>
+        <textarea id="c-msg" name="message"></textarea>
+        <label class="consent" for="c-consent"><input id="c-consent" type="checkbox" required><span>קראתי ואני מסכים/ה לתנאי השימוש ולמדיניות הפרטיות</span></label>
+        <button class="btn btn-ink" type="submit">שלח פנייה</button>
+        <div class="sent" hidden>
+          <p class="sent-note"></p>
+          <textarea class="sent-text" readonly aria-label="נוסח ההודעה"></textarea>
+          <div class="row2"><a class="btn btn-tape btn-sm sent-mail" href="mailto:info@prdsbi.com">פתיחה במייל</a><button class="btn btn-ink btn-sm sent-copy" type="button">העתקת ההודעה</button></div>
+        </div>
+      </form>
+      <div>
+        <img src="{{IMG:contact}}" alt="שולחן ישיבות במשרד" width="438" height="600" loading="lazy" style="border-radius:6px;margin-bottom:28px;max-height:340px;width:100%;object-fit:cover">
+        <h2 class="h2" style="margin-bottom:22px">הפנייה שלכם בידיים טובות</h2>
+        <div class="pairs" style="grid-template-columns:1fr">
+          <div><h3>דיסקרטיות מוחלטת</h3><p>כל פרט שתמסרו נשמר בסודיות מלאה. הפנייה לא תועבר לגורם שלישי כלשהו ללא אישורכם המפורש.</p></div>
+          <div><h3>מענה מקצועי ומהיר</h3><p>הפנייה תיבדק על ידי חוקר מוסמך ותקבלו מענה תוך 24 שעות בימי עסקים.</p></div>
+          <div><h3>מענה מקיף ללקוחות פרטיים ועסקיים</h3><p>פתרונות חקירה, איתור ומודיעין מותאמים אישית - מבירורים אישיים ודיני משפחה ועד לחקירות כלכליות ובדיקות רקע.</p></div>
+        </div>
+        <p style="margin-top:18px;color:var(--ink-2)">פנייתכם מחייבת אותנו לשמירה על סודיות מלאה, גם אם לא תתקדמו לשלב הבא.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="in">
+      <div class="stack"><h2 class="h2">צרו קשר עם המשרד</h2><p class="lede">אנו עומדים לרשותכם לכל פנייה מקצועית. כל פנייה מטופלת בדיסקרטיות מוחלטת ובמהירות מרבית.</p></div>
+      <div class="channels">
+        <div class="channel"><h3>טלפון</h3><a class="val" href="tel:+972543975210" dir="ltr">054-397-5210</a><p>שיחות מטופלות בשיקול דעת מקצועי</p><p style="font-weight:500;margin-top:6px">רשוי משרד המשפטים</p></div>
+        <div class="channel"><h3>וואטסאפ</h3><a class="val" href="https://wa.me/972543975210" dir="ltr">054-397-5210</a><p>מענה מהיר — לרוב תוך שעה בשעות הפעילות</p><p style="font-weight:500;margin-top:6px">ערוץ מאובטח ודיסקרטי</p></div>
+        <div class="channel"><h3>דואר אלקטרוני</h3><a class="val" href="mailto:info@prdsbi.com">info@prdsbi.com</a><p>מענה תוך 24 שעות בימי עסקים</p><p style="font-weight:500;margin-top:6px">מוצפן ומאובטח</p></div>
+      </div>
+      <div class="grid3" style="margin-top:44px">
+        <div><h3>שעות פעילות</h3><p>ראשון–שישי, 09:00–17:00</p></div>
+        <div><h3>דחיפות ומקרים רגישים</h3><p>זמינות מורחבת בתיאום מראש</p></div>
+        <div><h3>מיקום</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band cta-band"><div class="in"><h2>מוכנים לפעול בשיקול דעת ובמקצועיות?</h2><p>פרד"ס חקירות מלווה ארגונים, עורכי דין ומשקיעים בחקירות כלכליות, בדיקות נאותות ומודיעין עסקי — בדיסקרטיות מוחלטת, בחשיבה אסטרטגית ובאמינות שאין עליה עוררין. כל פנייה מטופלת בסודיות מלאה.</p><a class="btn btn-tape" href="tel:+972543975210">פנו אלינו לייעוץ ראשוני</a></div></section>
+</div>
+
+<!-- ============ PRIVACY ============ -->
+<div data-view="privacy" hidden>
+  <section class="phead"><div class="in"><h1>מדיניות פרטיות</h1></div></section>
+  <section class="band"><div class="in"><div class="doc">
+    <p class="upd">עדכון אחרון: 27.5.2026</p>
+    <p>פרד"ס חקירות ("החברה", "אנו", "שלנו") מחויבת להגן על פרטיותכם. מדיניות פרטיות זו מסבירה כיצד אנו אוספים, משתמשים ומגינים על המידע שלכם בעת השימוש באתר https://prdsbi.com ("השירות").</p>
+    <h2>1. איסוף מידע</h2><p>אנו עשויים לאסוף את סוגי המידע הבאים:</p>
+    <ul><li><strong>מידע אישי:</strong> שם, כתובת אימייל, מספר טלפון וכתובת</li><li><strong>מידע טכני:</strong> כתובת IP, סוג דפדפן, מערכת הפעלה ונתוני שימוש באתר</li><li><strong>עוגיות:</strong> מידע הנשמר במחשבכם לשיפור חוויית השימוש</li></ul>
+    <h2>2. שימוש במידע</h2><p>אנו משתמשים במידע שנאסף למטרות הבאות:</p>
+    <ul><li>מתן השירותים המבוקשים</li><li>שיפור השירות וחוויית המשתמש</li><li>יצירת קשר עמכם בנוגע לשירותינו</li><li>עמידה בדרישות חוקיות</li></ul>
+    <h2>3. שיתוף מידע</h2><p>אנו לא נמכור, נחכיר או נשתף את המידע האישי שלכם עם צדדים שלישיים, למעט במקרים הבאים:</p>
+    <ul><li>בהסכמתכם המפורשת</li><li>כאשר נדרש על פי חוק</li><li>להגנה על זכויותינו או בטחון משתמשינו</li><li>עם ספקי שירות המסייעים בהפעלת השירות (תחת הסכמי סודיות)</li></ul>
+    <h2>4. זכויות המשתמש</h2><p>בהתאם לחוק הגנת הפרטיות התשמ"א-1981, יש לכם הזכויות הבאות:</p>
+    <ul><li>זכות עיון במידע האישי השמור עליכם</li><li>זכות לתיקון מידע שגוי או לא מדויק</li><li>זכות למחיקת מידע אישי בנסיבות מסוימות</li><li>זכות להתנגד לעיבוד מידע למטרות שיווק</li><li>זכות להגשת תלונה לרשם מאגרי המידע</li></ul>
+    <h2>5. עוגיות (Cookies)</h2><p>אתרנו משתמש בעוגיות לשיפור חוויית השימוש. ניתן לנהל את העוגיות דרך הגדרות הדפדפן שלכם. השבתת עוגיות עלולה להשפיע על פונקציונליות האתר.</p>
+    <h2>6. אבטחת מידע</h2><p>אנו נוקטים באמצעי אבטחה סבירים להגנה על המידע שלכם, כולל הצפנה, חומות אש ובקרת גישה מוגבלת. עם זאת, אף שיטת העברה או אחסון אינה בטוחה ב-100%.</p>
+    <h2>7. שינויים במדיניות</h2><p>אנו עשויים לעדכן מדיניות פרטיות זו מעת לעת. שינויים מהותיים יפורסמו באתר עם הודעה מוקדמת של 30 יום.</p>
+    <h2>8. יצירת קשר</h2><p>לשאלות או בקשות בנוגע למדיניות פרטיות זו, ניתן לפנות אלינו:</p>
+    <ul><li>חברה: פרד"ס חקירות</li><li>אימייל: info@prdsbi.com</li><li>טלפון: <span dir="ltr">+972-543975210</span></li></ul>
+    <p>רשם מאגרי המידע: לתלונות ניתן לפנות לרשם מאגרי המידע במשרד המשפטים</p>
+  </div></div></section>
+</div>
+
+<!-- ============ TERMS ============ -->
+<div data-view="terms" hidden>
+  <section class="phead"><div class="in"><h1>תנאי שימוש</h1></div></section>
+  <section class="band"><div class="in"><div class="doc">
+    <p class="upd">עדכון אחרון: 27.5.2026</p>
+    <p>השימוש באתר זה מהווה הסכמה לתנאי השימוש המפורטים להלן. אנא קראו בעיון לפני השימוש.</p>
+    <h2>1. הגדרות</h2>
+    <ul><li>"החברה" - פרד"ס חקירות</li><li>"המשתמש" - כל מי שגולש או משתמש באתר</li><li>"השירותים" - Private Investigation &amp; Business Intelligence הניתנים דרך האתר</li></ul>
+    <h2>2. תיאור השירותים</h2><p>פרד"ס חקירות מספקת Private Investigation &amp; Business Intelligence דרך האתר. השירותים כפופים לתנאים המפורטים במסמך זה ועשויים להשתנות מעת לעת.</p>
+    <h2>3. תנאי השימוש</h2><p>השימוש באתר מותנה בעמידה בתנאים הבאים:</p>
+    <ul><li>השימוש באתר למטרות חוקיות בלבד</li><li>אי-הפרעה לפעילות האתר או משתמשים אחרים</li><li>אי-העלאת תוכן פוגעני, לא חוקי או מזיק</li><li>כיבוד זכויות יוצרים וקניין רוחני</li><li>אי-ביצוע פעולות שעלולות לפגוע באבטחת האתר</li></ul>
+    <h2>4. חובות המשתמש</h2>
+    <ul><li>מתן מידע נכון ומדויק בעת הרשמה או הזמנה</li><li>שמירה על סודיות פרטי הגישה לחשבון</li><li>הודעה מיידית על כל שימוש לא מורשה בחשבון</li><li>עדכון מידע אישי במידת הצורך</li></ul>
+    <h2>5. מדיניות תשלומים והחזרים</h2><p>במידה והשירותים כוללים תשלום:</p>
+    <ul><li>התשלומים מבוצעים דרך מערכות בטוחות ומוצפנות</li><li>המחירים כוללים מע"ם כנדרש בחוק</li><li>זכות ביטול עסקה תעמוד בהתאם לחוק הגנת הצרכן</li><li>החזרים יבוצעו תוך 14 ימי עסקים מאישור הביטול</li></ul>
+    <h2>6. הגבלת אחריות</h2><p>השירותים ניתנים "כפי שהם" ללא אחריות מכל סוג. החברה לא תהיה אחראית לנזקים עקיפים, תוצאתיים או מיוחדים הנובעים משימוש באתר, למעט במקרים בהם החוק קובע אחרת.</p>
+    <h2>7. זכויות יוצרים וקניין רוחני</h2><p>כל התכנים באתר, כולל טקסטים, תמונות, עיצוב וקוד, מוגנים בזכויות יוצרים השייכות לפרד"ס חקירות. אסור לשכפל, להפיץ או לעשות שימוש מסחרי בתכנים ללא אישור בכתב.</p>
+    <h2>8. פרטיות</h2><p>איסוף ושימוש במידע אישי כפופים למדיניות הפרטיות שלנו. השימוש באתר מהווה הסכמה למדיניות הפרטיות כפי שמפורט בנפרד.</p>
+    <h2>9. שינוי תנאי השימוש</h2><p>החברה רשאית לשנות תנאי שימוש אלה בכל עת. שינויים מהותיים יפורסמו באתר עם הודעה מוקדמת של 30 יום. המשך השימוש לאחר השינוי מהווה הסכמה לתנאים החדשים.</p>
+    <h2>10. סיום השירות</h2><p>החברה רשאית להפסיק או להגביל את השירות בכל עת, לרבות במקרה של הפרת תנאי השימוש. במקרה של סיום השירות, יישמרו הוראות הסעיפים הרלוונטיים.</p>
+    <h2>11. דין חל ויישוב סכסוכים</h2><p>תנאי שימוש אלה כפופים לחוקי מדינת ישראל. כל סכסוך יידון בבתי המשפט המוסמכים בישראל, תוך מתן עדיפות לבוררות או גישור במידת האפשר.</p>
+    <h2>12. הוראות כלליות</h2>
+    <ul><li>אם חלק מהתנאים יוכרז כבלתי תקף, יישארו שאר התנאים בתוקף</li><li>אי-אכיפה של זכות לא תחשב כוויתור עליה</li><li>תנאי השימוש מהווים את מלוא ההסכם בין הצדדים</li></ul>
+    <h2>13. פרטי יצירת קשר</h2><p>לשאלות או הבהרות בנוגע לתנאי השימוש:</p>
+    <ul><li>חברה: פרד"ס חקירות</li><li>אימייל: info@prdsbi.com</li><li>טלפון: <span dir="ltr">+972-543975210</span></li></ul>
+  </div></div></section>
+</div>
+
+<!-- ============ ACCESSIBILITY ============ -->
+<div data-view="accessibility" hidden>
+  <section class="phead"><div class="in"><h1>הצהרת נגישות</h1></div></section>
+  <section class="band"><div class="in"><div class="doc">
+    <p class="upd">עדכון אחרון: 27.5.2026</p>
+    <p>פרד"ס חקירות מחויבת להנגיש את השירותים לכלל הציבור. אנו פועלים ליישם את הנחיות התקן הישראלי (ת"י 5568) המבוסס על הנחיות WCAG 2.1 ברמת AA.</p>
+    <p><strong>רמת נגישות:</strong> AA (תקן ישראלי ת"י 5568)</p>
+    <h2>1. מדיניות הנגישות</h2><p>אנו מאמינים בשוויון זכויות ובזכותו של כל אדם לקבל מידע ושירותים בצורה עצמאית ושוויונית. אתר זה תוכנן ונבנה תוך מתן דגש מיוחד על נגישות לאנשים עם מוגבלויות.</p>
+    <h2>2. הסדרי הנגישות באתר</h2>
+    <ul><li>תמיכה בניווט באמצעות מקלדת</li><li>תמיכה בקוראי מסך</li><li>ניגודיות צבעים מתאימה</li><li>גדלי פונט גמישים וניתנים להגדלה</li><li>תיאורי תמונות (Alt text) מפורטים</li><li>כותרות מובנות היררכית</li><li>קישורים תיאוריים וברורים</li><li>תמיכה בזום עד 200% ללא אובדן תוכן</li></ul>
+    <p><strong>תאימות לתקן WCAG 2.1</strong></p><p>האתר תואם לרמת AA של תקן WCAG 2.1, הכולל:</p>
+    <ul><li><strong>נתפס (Perceivable):</strong> המידע מוצג בדרכים שמשתמשים יכולים לתפוס</li><li><strong>פעיל (Operable):</strong> רכיבי הממשק ניתנים להפעלה</li><li><strong>מובן (Understandable):</strong> המידע וממשק המשתמש מובנים</li><li><strong>חזק (Robust):</strong> התוכן יכול להיות מפוענח על ידי מגוון טכנולוגיות</li></ul>
+    <h2>3. טכנולוגיות מסייעות נתמכות</h2>
+    <ul><li>NVDA (Windows)</li><li>JAWS (Windows)</li><li>VoiceOver (Mac/iOS)</li><li>TalkBack (Android)</li><li>Dragon NaturallySpeaking</li><li>ניווט מתגים</li></ul>
+    <h2>4. בדיקות נגישות</h2><p>האתר נבדק באמצעות:</p>
+    <ul><li>כלים אוטומטיים לבדיקת נגישות</li><li>בדיקות ידניות עם קוראי מסך</li><li>ניווט באמצעות מקלדת בלבד</li><li>בדיקת ניגודיות צבעים</li><li>בדיקה עם משתמשים עם מוגבלויות</li></ul>
+    <h2>5. שיפורים מתמשכים</h2><p>אנו עובדים באופן מתמשך לשיפור נגישות האתר ומעדכנים אותו בהתאם להתפתחויות טכנולוגיות ולמשוב מהמשתמשים.</p>
+    <h2>6. יצירת קשר ומשוב</h2><p>אם נתקלתם בבעיית נגישות באתר או זקוקים לסיוע, אנא פנו אלינו:</p>
+    <ul><li>חברה: פרד"ס חקירות</li><li>אימייל: info@prdsbi.com</li><li>טלפון: <span dir="ltr">+972-543975210</span></li></ul>
+    <p><strong>זמני מענה:</strong> נענה לפניות בנושא נגישות תוך 3 ימי עסקים ונפעל לפתרון תוך 10 ימי עסקים.</p>
+    <p><strong>תלונות:</strong> ניתן להגיש תלונה למשרד המשפטים - הנציבות לשוויון זכויות לאנשים עם מוגבלות</p>
+  </div></div></section>
+</div>
+
+</main>
+
+<footer class="site">
+  <div class="in">
+    <div class="fgrid">
+      <div>
+        <img src="{{IMG:logo}}" alt="פרד״ס חקירות" width="206" height="56" loading="lazy">
+        <p>חקירות פרטיות ומודיעין עסקי.<br>שיקול דעת, דיוק ואמינות בכל תיק.</p>
+      </div>
+      <div>
+        <h3>ניווט מהיר</h3>
+        <ul><li><a href="#home">בית</a></li><li><a href="#about">אודות המשרד</a></li><li><a href="#services">שירותים</a></li><li><a href="#contact">צור קשר</a></li></ul>
+      </div>
+      <div>
+        <h3>יצירת קשר</h3>
+        <ul><li><a href="mailto:info@prdsbi.com">info@prdsbi.com</a></li><li><a href="tel:+972543975210" dir="ltr">0543975210</a></li><li>סודיות מוחלטת מובטחת</li></ul>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© 2026 פרד"ס חקירות. כל הזכויות שמורות.</span>
+      <nav aria-label="קישורים משפטיים"><a href="#privacy">מדיניות פרטיות</a><a href="#terms">תנאי שימוש</a><a href="#accessibility">נגישות</a><a href="https://zappy5.com">נוצר באמצעות Zappy</a></nav>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/972543975210">וואטסאפ</a>
+</div>
+
+<script>
+(function(){
+  var VIEWS=['home','about','services','cases','contact','privacy','terms','accessibility'];
+  var menu=document.getElementById('menu'),burger=document.getElementById('burger');
+  function route(){
+    var h=(location.hash||'').replace('#','');
+    if(!h){h='home';}
+    if(VIEWS.indexOf(h)<0){return;}
+    var secs=document.querySelectorAll('[data-view]');
+    for(var i=0;i<secs.length;i++){secs[i].hidden=secs[i].getAttribute('data-view')!==h;}
+    var links=document.querySelectorAll('[data-nav]');
+    for(var j=0;j<links.length;j++){
+      if(links[j].getAttribute('data-nav')===h){links[j].setAttribute('aria-current','page');}else{links[j].removeAttribute('aria-current');}
+    }
+    menu.classList.remove('open');burger.setAttribute('aria-expanded','false');
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange',route);
+  route();
+  burger.addEventListener('click',function(){
+    var open=menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded',open?'true':'false');
+  });
+
+  /* forms */
+  var forms=document.querySelectorAll('.lead-form');
+  Array.prototype.forEach.call(forms,function(form){
+    var sent=form.querySelector('.sent'),txt=form.querySelector('.sent-text'),copyBtn=form.querySelector('.sent-copy');
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      if(!form.reportValidity()){return;}
+      var g=function(n){var el=form.querySelector('[name="'+n+'"]');return el?el.value.trim():'';};
+      var body='שם: '+g('name')+'\nטלפון: '+g('phone')+'\nדוא״ל: '+g('email')+(g('message')?'\n\n'+g('message'):'');
+      txt.value=body;
+      form.querySelector('.sent-note').textContent='ההודעה עדיין לא נשלחה. פתחו אותה במייל, או העתיקו ושלחו אל info@prdsbi.com.';
+      form.querySelector('.sent-mail').href='mailto:info@prdsbi.com?subject='+encodeURIComponent('פנייה מהאתר')+'&body='+encodeURIComponent(body);
+      sent.hidden=false;
+    });
+    copyBtn.addEventListener('click',function(){
+      var done=function(){copyBtn.textContent='הועתק';};
+      var fb=function(){txt.focus();txt.select();};
+      try{navigator.clipboard.writeText(txt.value).then(done,fb);}catch(err){fb();}
+    });
+  });
+})();
+</script>
