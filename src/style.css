@@ -3,14 +3,14 @@
   --bg:#ebeee9;
   --surface:#f6f7f3;
   --surface-2:#dde2db;
-  --ink:#0f2229;
-  --ink-2:#435860;
+  --ink:#0f1f3d;
+  --ink-2:#44526b;
   --line:#bcc4bd;
-  --deep:#061317;
-  --deep-2:#040d10;
-  --deep-ink:#e8eeea;
-  --deep-mute:#a3b8ba;
-  --deep-line:#1f3a41;
+  --deep:#10234a;
+  --deep-2:#0b1b3b;
+  --deep-ink:#e8edf5;
+  --deep-mute:#a6b3c9;
+  --deep-line:#22345a;
   --tape:#e3a812;
   --tape-hi:#f6cd55;
   --tape-ink:#1a1405;
@@ -25,14 +25,14 @@
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#0a1a1f; --surface:#102830; --surface-2:#0e2127; --ink:#e6edea; --ink-2:#9db3b5; --line:#24424a;
-    --deep:#040d10; --deep-2:#030a0c; --deep-line:#1a3239;
+    --bg:#0b1428; --surface:#13223f; --surface-2:#0f1c35; --ink:#e8edf5; --ink-2:#a3b0c7; --line:#283b5f;
+    --deep:#0d1d3f; --deep-2:#091631; --deep-line:#22365c;
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0a1a1f; --surface:#102830; --surface-2:#0e2127; --ink:#e6edea; --ink-2:#9db3b5; --line:#24424a;
-  --deep:#040d10; --deep-2:#030a0c; --deep-line:#1a3239;
+  --bg:#0b1428; --surface:#13223f; --surface-2:#0f1c35; --ink:#e8edf5; --ink-2:#a3b0c7; --line:#283b5f;
+  --deep:#0d1d3f; --deep-2:#091631; --deep-line:#22365c;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -165,13 +165,12 @@ img{max-width:100%;display:block}
 .pairs>div{padding:24px 0;border-top:1px solid var(--line)}
 .n{display:block;font-size:.85rem;font-weight:700;color:var(--ink-2);letter-spacing:.08em;margin-bottom:4px}
 .deep .n,.cta-band .n{color:var(--deep-mute)}
-.em{display:block;font-size:1.7rem;line-height:1.3;margin-bottom:6px}
 .pairs h3{font-size:var(--t-lg);margin-bottom:6px;line-height:1.35}
 .pairs p{color:var(--ink-2);font-size:1rem}
 @media(max-width:860px){.pairs{grid-template-columns:1fr}}
 
 /* cards: folder */
-.cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:56px 28px;isolation:isolate}
+.cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:64px 28px;isolation:isolate}
 .folder{position:relative;background:var(--surface);border-radius:16px;border-start-start-radius:0;padding:34px 26px 26px;display:flex;flex-direction:column;transition:transform .3s var(--ease);box-shadow:0 1px 0 var(--line)}
 .folder::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--bg);border-radius:inherit;transform:rotate(1.6deg);box-shadow:0 1px 0 var(--line)}
 .folder:hover{transform:translateY(-6px)}
@@ -285,7 +284,14 @@ footer.site a{text-decoration:none}
 footer.site a:hover{color:var(--tape)}
 .fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:22px;color:var(--deep-mute);font-size:.9rem}
 .fbot nav{display:flex;gap:18px;flex-wrap:wrap}
-.wa{position:fixed;z-index:40;inset-inline-end:max(16px,env(safe-area-inset-left,0px),env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));background:var(--tape);color:var(--tape-ink);font-weight:700;text-decoration:none;border-radius:999px;padding:13px 24px;box-shadow:0 12px 28px -8px #000b}
+.wa{position:fixed;z-index:40;inset-inline-end:max(16px,env(safe-area-inset-left,0px),env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));width:58px;height:58px;display:grid;place-items:center;background:#25d366;color:#fff;border-radius:50%;box-shadow:0 12px 28px -8px #000b;transition:transform .15s var(--ease)}
+.wa:hover{transform:scale(1.06)}
+.wa svg{width:30px;height:30px;fill:currentColor}
+/* line icons (replace emojis) */
+.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tags li{display:inline-flex;align-items:center;gap:8px}
+.em{display:grid;place-items:center;width:52px;height:52px;border-radius:12px;border:2px solid var(--ink);margin-bottom:14px}
+.em .i{width:26px;height:26px;stroke-width:1.6}
 @media(max-width:760px){.fgrid{grid-template-columns:1fr}}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
