@@ -1,4 +1,20 @@
-<title>פרד"ס חקירות</title>
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>פרד&quot;ס חקירות — חקירות פרטיות ומודיעין עסקי</title>
+<meta name="description" content="פרד&quot;ס חקירות – משרד חקירות פרטיות ומודיעין עסקי מורשה מטעם משרד המשפטים: חקירות כלכליות, איתור נכסים, בדיקות נאותות, בדיקות רקע וחקירות סייבר, בישראל ובחו&quot;ל.">
+<link rel="canonical" href="https://prdsbi.com/">
+<link rel="alternate" hreflang="he" href="https://prdsbi.com/">
+<link rel="alternate" hreflang="en" href="https://prdsbi.com/en/">
+<link rel="alternate" hreflang="x-default" href="https://prdsbi.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="פרד&quot;ס חקירות — חקירות פרטיות ומודיעין עסקי">
+<meta property="og:description" content="פרד&quot;ס חקירות – משרד חקירות פרטיות ומודיעין עסקי מורשה מטעם משרד המשפטים: חקירות כלכליות, איתור נכסים, בדיקות נאותות, בדיקות רקע וחקירות סייבר, בישראל ובחו&quot;ל.">
+<meta property="og:url" content="https://prdsbi.com/">
+<meta property="og:locale" content="he_IL">
+<meta property="og:locale:alternate" content="en_US">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,7 +57,6 @@
   --deep:#040d10; --deep-2:#030a0c; --deep-line:#1a3239;
   color-scheme:dark;
 }
-:root{direction:rtl}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:var(--t-base);line-height:1.7;-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--deep-2)}
@@ -53,8 +68,8 @@ img{max-width:100%;display:block}
 :focus-visible{outline:3px solid var(--tape);outline-offset:3px}
 .in{max-width:1220px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .band{padding-block:clamp(56px,9vw,112px)}
-.skip{position:absolute;right:-9999px}
-.skip:focus{right:12px;top:12px;z-index:99;background:var(--tape);color:var(--tape-ink);padding:8px 14px}
+.skip{position:absolute;top:12px;inset-inline-start:12px;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.skip:focus{width:auto;height:auto;overflow:visible;clip-path:none;z-index:99;background:var(--tape);color:var(--tape-ink);padding:8px 14px}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 32px;border-radius:999px;font:700 1.02rem var(--font);text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s var(--ease),background .15s,color .15s,border-color .15s,box-shadow .2s}
 .btn:active{transform:scale(.98)}
@@ -140,8 +155,8 @@ img{max-width:100%;display:block}
 .grid3 p,.grid2 p{color:var(--ink-2)}
 .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px clamp(28px,5vw,72px)}
 @media(max-width:860px){.grid3,.grid2{grid-template-columns:1fr}}
-.checks li{position:relative;padding:10px 34px 10px 0;border-bottom:1px solid var(--line);font-weight:500}
-.checks li::before{content:"";position:absolute;right:4px;top:19px;width:12px;height:7px;border-left:3px solid var(--tape);border-bottom:3px solid var(--tape);transform:rotate(-45deg)}
+.checks li{position:relative;padding:10px 0;padding-inline-start:34px;border-bottom:1px solid var(--line);font-weight:500}
+.checks li::before{content:"";position:absolute;inset-inline-start:4px;top:19px;width:12px;height:7px;border-left:3px solid var(--tape);border-bottom:3px solid var(--tape);transform:rotate(-45deg)}
 
 /* home services rows */
 .rows{border-top:2px solid var(--ink)}
@@ -179,10 +194,10 @@ img{max-width:100%;display:block}
 
 /* cards: folder */
 .cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:56px 28px;isolation:isolate}
-.folder{position:relative;background:var(--surface);border-radius:0 16px 16px 16px;padding:34px 26px 26px;display:flex;flex-direction:column;transition:transform .3s var(--ease);box-shadow:0 1px 0 var(--line)}
+.folder{position:relative;background:var(--surface);border-radius:16px;border-start-start-radius:0;padding:34px 26px 26px;display:flex;flex-direction:column;transition:transform .3s var(--ease);box-shadow:0 1px 0 var(--line)}
 .folder::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--bg);border-radius:inherit;transform:rotate(1.6deg);box-shadow:0 1px 0 var(--line)}
 .folder:hover{transform:translateY(-6px)}
-.folder .tab{position:absolute;right:0;top:-36px;height:36px;background:var(--surface);border-radius:14px 14px 0 0;padding:0 20px;display:flex;align-items:center;font-weight:700;font-size:.9rem}
+.folder .tab{position:absolute;inset-inline-start:0;top:-36px;height:36px;background:var(--surface);border-radius:14px 14px 0 0;padding:0 20px;display:flex;align-items:center;font-weight:700;font-size:.9rem}
 .folder h3{font-size:var(--t-lg);line-height:1.35;margin-bottom:12px}
 .folder p{color:var(--ink-2);flex:1}
 .folder a{margin-top:22px;font-weight:700;text-decoration:none;align-self:flex-start;padding-bottom:2px;border-bottom:3px solid var(--tape)}
@@ -192,8 +207,8 @@ img{max-width:100%;display:block}
 /* about: steps, values */
 .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
 .steps li{position:relative;padding-top:64px}
-.steps li::before{content:attr(data-n);position:absolute;top:0;right:0;width:48px;height:48px;border-radius:50%;background:var(--tape);color:var(--tape-ink);font-weight:800;display:grid;place-items:center;font-size:1.2rem}
-.steps li::after{content:"";position:absolute;top:24px;right:60px;left:-28px;border-top:2px dashed var(--line)}
+.steps li::before{content:attr(data-n);position:absolute;top:0;inset-inline-start:0;width:48px;height:48px;border-radius:50%;background:var(--tape);color:var(--tape-ink);font-weight:800;display:grid;place-items:center;font-size:1.2rem}
+.steps li::after{content:"";position:absolute;top:24px;inset-inline-start:60px;inset-inline-end:-28px;border-top:2px dashed var(--line)}
 .steps li:last-child::after{display:none}
 .steps h3{font-size:var(--t-lg);margin-bottom:8px;line-height:1.3}
 .steps p{color:var(--ink-2);font-size:1rem}
@@ -220,8 +235,8 @@ img{max-width:100%;display:block}
 @media(max-width:760px){.subs,.stats{grid-template-columns:1fr}}
 
 /* case full */
-.case-full{background:var(--surface);border-radius:0 18px 18px 18px;padding:clamp(24px,4vw,48px);margin-top:64px;position:relative}
-.case-full .tab{position:absolute;right:0;top:-38px;height:38px;background:var(--surface);border-radius:14px 14px 0 0;padding:0 22px;display:flex;align-items:center;font-weight:700;font-size:.92rem}
+.case-full{background:var(--surface);border-radius:18px;border-start-start-radius:0;padding:clamp(24px,4vw,48px);margin-top:64px;position:relative}
+.case-full .tab{position:absolute;inset-inline-start:0;top:-38px;height:38px;background:var(--surface);border-radius:14px 14px 0 0;padding:0 22px;display:flex;align-items:center;font-weight:700;font-size:.92rem}
 .case-full h2{font-size:var(--t-2xl);line-height:1.2;margin-bottom:14px}
 .case-full .intro{color:var(--ink-2);font-size:var(--t-lg);max-width:70ch;margin-bottom:26px}
 .meta{display:flex;flex-wrap:wrap;gap:12px 40px;padding:18px 0;border-block:1px solid var(--line);margin-bottom:12px}
@@ -282,7 +297,7 @@ form .btn{width:100%}
 .doc li{margin-bottom:6px}
 .doc strong{color:var(--ink)}
 
-footer.site{background:var(--deep-2);color:var(--deep-ink);padding-block:56px 30px;padding-bottom:max(30px,env(safe-area-inset-bottom,0px))}
+footer.site{background:var(--deep-2);color:var(--deep-ink);padding-block:56px 30px;padding-bottom:max(96px,calc(env(safe-area-inset-bottom,0px) + 80px))}
 .fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;padding-bottom:36px;border-bottom:1px solid var(--deep-line)}
 .fgrid img{height:56px;width:auto;margin-bottom:14px}
 footer.site h3{font:500 var(--t-sm) var(--font);color:var(--deep-mute);margin-bottom:14px;letter-spacing:0}
@@ -292,12 +307,25 @@ footer.site a{text-decoration:none}
 footer.site a:hover{color:var(--tape)}
 .fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:22px;color:var(--deep-mute);font-size:.9rem}
 .fbot nav{display:flex;gap:18px;flex-wrap:wrap}
-.wa{position:fixed;z-index:40;left:max(16px,env(safe-area-inset-left,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));background:var(--tape);color:var(--tape-ink);font-weight:700;text-decoration:none;border-radius:999px;padding:13px 24px;box-shadow:0 12px 28px -8px #000b}
+.wa{position:fixed;z-index:40;inset-inline-end:max(16px,env(safe-area-inset-left,0px),env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));background:var(--tape);color:var(--tape-ink);font-weight:700;text-decoration:none;border-radius:999px;padding:13px 24px;box-shadow:0 12px 28px -8px #000b}
 @media(max-width:760px){.fgrid{grid-template-columns:1fr}}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
-</style>
 
-<div lang="he" dir="rtl">
+/* language switch */
+.lang{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:1px solid #9db3b566;border-radius:999px;color:var(--deep-ink);text-decoration:none;font-weight:500;font-size:.92rem;flex:none}
+.lang:hover{border-color:var(--deep-ink);background:#ffffff14}
+.top .acts{display:flex;align-items:center;gap:10px}
+/* left-to-right (English): text sits on the left, so the dark side of the photo overlays moves there */
+[dir=ltr] .hero::before{transform:none}
+[dir=ltr] .hero::after{background:linear-gradient(to right,var(--deep) 4%,color-mix(in srgb,var(--deep) 86%,transparent) 40%,color-mix(in srgb,var(--deep) 25%,transparent) 80%)}
+[dir=ltr] .phead::after{background:linear-gradient(to right,var(--deep) 8%,color-mix(in srgb,var(--deep) 88%,transparent) 55%,color-mix(in srgb,var(--deep) 60%,transparent))}
+[dir=ltr] h1,[dir=ltr] h2,[dir=ltr] h3{letter-spacing:-.015em}
+[dir=ltr] .hero-copy{max-width:720px}
+@media(max-width:860px){[dir=ltr] .hero::after{background:linear-gradient(to bottom,color-mix(in srgb,var(--deep) 84%,transparent),color-mix(in srgb,var(--deep) 72%,transparent))}}
+
+</style>
+</head>
+<body>
 <a class="skip" href="#maincontent">דלג לתוכן הראשי</a>
 
 <header class="top">
@@ -310,8 +338,11 @@ footer.site a:hover{color:var(--tape)}
       <a href="#cases" data-nav="cases">מקרים</a>
       <a href="#contact" data-nav="contact">צור קשר</a>
     </nav>
-    <a class="btn btn-tape btn-sm topcta" href="#contact">צור קשר</a>
-    <button class="burger" id="burger" type="button" aria-label="תפריט" aria-expanded="false" aria-controls="menu"><span></span></button>
+    <div class="acts">
+      <a class="lang" href="en/" data-lang-switch="en/" hreflang="en" lang="en">English</a>
+      <a class="btn btn-tape btn-sm topcta" href="#contact">צור קשר</a>
+      <button class="burger" id="burger" type="button" aria-label="תפריט" aria-expanded="false" aria-controls="menu"><span></span></button>
+    </div>
   </div>
 </header>
 
@@ -450,9 +481,9 @@ footer.site a:hover{color:var(--tape)}
         <label for="h-name">שם מלא *</label>
         <input id="h-name" name="name" type="text" required autocomplete="name">
         <label for="h-phone">טלפון *</label>
-        <input id="h-phone" name="phone" type="tel" required autocomplete="tel">
+        <input id="h-phone" name="phone" type="tel" required autocomplete="tel" dir="ltr">
         <label for="h-email">דוא״ל *</label>
-        <input id="h-email" name="email" type="email" required autocomplete="email">
+        <input id="h-email" name="email" type="email" required autocomplete="email" dir="ltr">
         <label for="h-msg">הודעה (אופציונלי)</label>
         <textarea id="h-msg" name="message"></textarea>
         <button class="btn btn-ink" type="submit">שליחה</button>
@@ -666,7 +697,7 @@ footer.site a:hover{color:var(--tape)}
       <small>פרד"ס חקירות · תיקי עיון</small>
       <h1>חקירות שמדברות בעצמן</h1>
       <p class="lead">מקרים מהשטח: הניתוח, הראיות והשורה התחתונה.</p>
-      <ul class="tags deep" style="margin:26px 0"><li style="border-color:#ffffff66">רישיון משרד המשפטים</li><li style="border-color:#ffffff66">סודיות מוחלטת מובטחת</li></ul>
+      <ul class="tags" style="margin:26px 0"><li style="border-color:#ffffff66">רישיון משרד המשפטים</li><li style="border-color:#ffffff66">סודיות מוחלטת מובטחת</li></ul>
       <a class="btn btn-tape" href="#contact">צרו קשר לייעוץ</a>
     </div>
   </section>
@@ -738,12 +769,12 @@ footer.site a:hover{color:var(--tape)}
         <label for="c-name">שם מלא</label>
         <input id="c-name" name="name" type="text" required autocomplete="name">
         <label for="c-email">כתובת דוא"ל</label>
-        <input id="c-email" name="email" type="email" required autocomplete="email">
+        <input id="c-email" name="email" type="email" required autocomplete="email" dir="ltr">
         <label for="c-phone">טלפון</label>
-        <input id="c-phone" name="phone" type="tel" required autocomplete="tel">
+        <input id="c-phone" name="phone" type="tel" required autocomplete="tel" dir="ltr">
         <label for="c-msg">פרטי הפנייה</label>
         <textarea id="c-msg" name="message"></textarea>
-        <label class="consent" for="c-consent"><input id="c-consent" type="checkbox" required><span>קראתי ואני מסכים/ה לתנאי השימוש ולמדיניות הפרטיות</span></label>
+        <label class="consent"><input id="c-consent" type="checkbox" required><span>קראתי ואני מסכים/ה ל<a href="#terms">תנאי השימוש</a> ול<a href="#privacy">מדיניות הפרטיות</a></span></label>
         <button class="btn btn-ink" type="submit">שלח פנייה</button>
         <div class="sent" hidden>
           <p class="sent-note"></p>
@@ -878,18 +909,32 @@ footer.site a:hover{color:var(--tape)}
     </div>
     <div class="fbot">
       <span>© 2026 פרד"ס חקירות. כל הזכויות שמורות.</span>
-      <nav aria-label="קישורים משפטיים"><a href="#privacy">מדיניות פרטיות</a><a href="#terms">תנאי שימוש</a><a href="#accessibility">נגישות</a><a href="https://zappy5.com">נוצר באמצעות Zappy</a></nav>
+      <nav aria-label="קישורים משפטיים"><a href="#privacy">מדיניות פרטיות</a><a href="#terms">תנאי שימוש</a><a href="#accessibility">נגישות</a><a href="en/" data-lang-switch="en/" hreflang="en" lang="en">English</a></nav>
     </div>
   </div>
 </footer>
 
 <a class="wa" href="https://wa.me/972543975210">וואטסאפ</a>
-</div>
 
 <script>
 (function(){
+  var EN=document.documentElement.lang==='en';
+  var T=EN?{
+    site:'Pardes Investigations',
+    views:{home:'Private Investigations & Business Intelligence',about:'About the Firm',services:'Services',cases:'Case Studies',contact:'Contact Us',privacy:'Privacy Policy',terms:'Terms of Use',accessibility:'Accessibility Statement'},
+    name:'Name',phone:'Phone',email:'Email',subject:'Website inquiry',
+    note:'Your message has not been sent yet. Open it in your email app, or copy it and send it to info@prdsbi.com.',
+    copied:'Copied'
+  }:{
+    site:'פרד"ס חקירות',
+    views:{home:'חקירות פרטיות ומודיעין עסקי',about:'אודות המשרד',services:'שירותים',cases:'מקרי בוחן',contact:'צור קשר',privacy:'מדיניות פרטיות',terms:'תנאי שימוש',accessibility:'הצהרת נגישות'},
+    name:'שם',phone:'טלפון',email:'דוא״ל',subject:'פנייה מהאתר',
+    note:'ההודעה עדיין לא נשלחה. פתחו אותה במייל, או העתיקו ושלחו אל info@prdsbi.com.',
+    copied:'הועתק'
+  };
   var VIEWS=['home','about','services','cases','contact','privacy','terms','accessibility'];
   var menu=document.getElementById('menu'),burger=document.getElementById('burger');
+  var switches=document.querySelectorAll('[data-lang-switch]');
   function route(){
     var h=(location.hash||'').replace('#','');
     if(!h){h='home';}
@@ -899,6 +944,11 @@ footer.site a:hover{color:var(--tape)}
     var links=document.querySelectorAll('[data-nav]');
     for(var j=0;j<links.length;j++){
       if(links[j].getAttribute('data-nav')===h){links[j].setAttribute('aria-current','page');}else{links[j].removeAttribute('aria-current');}
+    }
+    document.title=(h==='home'?T.site+' — '+T.views.home:T.views[h]+' — '+T.site);
+    /* the language switch opens the same page in the other language */
+    for(var k=0;k<switches.length;k++){
+      switches[k].href=switches[k].getAttribute('data-lang-switch')+(h==='home'?'':'#'+h);
     }
     menu.classList.remove('open');burger.setAttribute('aria-expanded','false');
     window.scrollTo(0,0);
@@ -918,17 +968,19 @@ footer.site a:hover{color:var(--tape)}
       e.preventDefault();
       if(!form.reportValidity()){return;}
       var g=function(n){var el=form.querySelector('[name="'+n+'"]');return el?el.value.trim():'';};
-      var body='שם: '+g('name')+'\nטלפון: '+g('phone')+'\nדוא״ל: '+g('email')+(g('message')?'\n\n'+g('message'):'');
+      var body=T.name+': '+g('name')+'\n'+T.phone+': '+g('phone')+'\n'+T.email+': '+g('email')+(g('message')?'\n\n'+g('message'):'');
       txt.value=body;
-      form.querySelector('.sent-note').textContent='ההודעה עדיין לא נשלחה. פתחו אותה במייל, או העתיקו ושלחו אל info@prdsbi.com.';
-      form.querySelector('.sent-mail').href='mailto:info@prdsbi.com?subject='+encodeURIComponent('פנייה מהאתר')+'&body='+encodeURIComponent(body);
+      form.querySelector('.sent-note').textContent=T.note;
+      form.querySelector('.sent-mail').href='mailto:info@prdsbi.com?subject='+encodeURIComponent(T.subject)+'&body='+encodeURIComponent(body);
       sent.hidden=false;
     });
     copyBtn.addEventListener('click',function(){
-      var done=function(){copyBtn.textContent='הועתק';};
+      var done=function(){copyBtn.textContent=T.copied;};
       var fb=function(){txt.focus();txt.select();};
       try{navigator.clipboard.writeText(txt.value).then(done,fb);}catch(err){fb();}
     });
   });
 })();
 </script>
+</body>
+</html>
