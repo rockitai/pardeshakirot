@@ -332,6 +332,11 @@ footer.site a:hover{color:var(--tape)}
 .channel .wa-link{display:inline-flex;align-items:center;gap:10px}
 .wa-ic{width:26px;height:26px;fill:#25d366;flex:none}
 
+/* hero background video (globe on the left, behind the overlay) */
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;pointer-events:none}
+[dir=ltr] .hero-video{transform:scaleX(-1)}
+@media (prefers-reduced-motion: reduce){.hero-video{display:none}}
+
 </style>
 </head>
 <body>
@@ -360,6 +365,7 @@ footer.site a:hover{color:var(--tape)}
 <!-- ============ HOME ============ -->
 <div data-view="home">
   <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="/media/hero-poster.jpg" aria-hidden="true"><source src="/media/hero.mp4#t=4" type="video/mp4"></video>
     <div class="in">
       <div class="hero-copy">
         <small>Pardes Investigations</small>

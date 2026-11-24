@@ -309,3 +309,8 @@ footer.site a:hover{color:var(--tape)}
 /* contact channels: WhatsApp link with icon */
 .channel .wa-link{display:inline-flex;align-items:center;gap:10px}
 .wa-ic{width:26px;height:26px;fill:#25d366;flex:none}
+
+/* hero background video (globe on the left, behind the overlay) */
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;pointer-events:none}
+[dir=ltr] .hero-video{transform:scaleX(-1)}
+@media (prefers-reduced-motion: reduce){.hero-video{display:none}}
