@@ -158,13 +158,10 @@
         <input id="h-email" name="email" type="email" required autocomplete="email" dir="ltr">
         <label for="h-msg">Message (optional)</label>
         <textarea id="h-msg" name="message"></textarea>
+        <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button class="btn btn-ink" type="submit">Send</button>
         <p class="secure">Your information is encrypted and kept in full confidence.</p>
-        <div class="sent" hidden>
-          <p class="sent-note"></p>
-          <textarea class="sent-text" readonly aria-label="Message text"></textarea>
-          <div class="row2"><a class="btn btn-tape btn-sm sent-mail" href="mailto:info@prdsbi.com">Open in email</a><button class="btn btn-ink btn-sm sent-copy" type="button">Copy message</button></div>
-        </div>
+        <p class="form-status" role="status" aria-live="polite" hidden></p>
       </form>
     </div>
   </section>
@@ -460,12 +457,9 @@
         <label for="c-msg">Details of your inquiry</label>
         <textarea id="c-msg" name="message"></textarea>
         <label class="consent"><input id="c-consent" type="checkbox" required><span>I have read and agree to the <a href="#terms">Terms of Use</a> and the <a href="#privacy">Privacy Policy</a></span></label>
+        <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button class="btn btn-ink" type="submit">Send inquiry</button>
-        <div class="sent" hidden>
-          <p class="sent-note"></p>
-          <textarea class="sent-text" readonly aria-label="Message text"></textarea>
-          <div class="row2"><a class="btn btn-tape btn-sm sent-mail" href="mailto:info@prdsbi.com">Open in email</a><button class="btn btn-ink btn-sm sent-copy" type="button">Copy message</button></div>
-        </div>
+        <p class="form-status" role="status" aria-live="polite" hidden></p>
       </form>
       <div>
         <img src="{{IMG:contact}}" alt="A meeting table in the office" width="438" height="600" loading="lazy" style="border-radius:6px;margin-bottom:28px;max-height:340px;width:100%;object-fit:cover">

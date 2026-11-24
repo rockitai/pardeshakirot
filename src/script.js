@@ -3,15 +3,15 @@
   var T=EN?{
     site:'Pardes Investigations',
     views:{home:'Private Investigations & Business Intelligence',about:'About the Firm',services:'Services',cases:'Case Studies',contact:'Contact Us',privacy:'Privacy Policy',terms:'Terms of Use',accessibility:'Accessibility Statement'},
-    name:'Name',phone:'Phone',email:'Email',subject:'Website inquiry',
-    note:'Your message has not been sent yet. Open it in your email app, or copy it and send it to info@prdsbi.com.',
-    copied:'Copied'
+    name:'Name',phone:'Phone',email:'Email',msg:'Message',subject:'Website inquiry',
+    sending:'Sending…',ok:'Thank you! Your inquiry has been received and we will get back to you shortly.',
+    fail:'Sending failed. Please call us on +972-54-397-5210 or write to info@prdsbi.com.'
   }:{
     site:'פרד"ס חקירות',
     views:{home:'חקירות פרטיות ומודיעין עסקי',about:'אודות המשרד',services:'שירותים',cases:'מקרי בוחן',contact:'צור קשר',privacy:'מדיניות פרטיות',terms:'תנאי שימוש',accessibility:'הצהרת נגישות'},
-    name:'שם',phone:'טלפון',email:'דוא״ל',subject:'פנייה מהאתר',
-    note:'ההודעה עדיין לא נשלחה. פתחו אותה במייל, או העתיקו ושלחו אל info@prdsbi.com.',
-    copied:'הועתק'
+    name:'שם',phone:'טלפון',email:'דוא״ל',msg:'הודעה',subject:'פנייה מהאתר',
+    sending:'שולח…',ok:'תודה! הפנייה התקבלה ונחזור אליכם בהקדם.',
+    fail:'השליחה לא הצליחה. אפשר להתקשר אלינו למספר ⁦054-397-5210⁩ או לכתוב ל-info@prdsbi.com.'
   };
   var VIEWS=['home','about','services','cases','contact','privacy','terms','accessibility'];
   var menu=document.getElementById('menu'),burger=document.getElementById('burger');
@@ -41,24 +41,25 @@
     burger.setAttribute('aria-expanded',open?'true':'false');
   });
 
-  /* forms */
+  /* forms: sent to info@prdsbi.com through FormSubmit (formsubmit.co) */
+  var FORM_URL='https://formsubmit.co/ajax/info@prdsbi.com';
   var forms=document.querySelectorAll('.lead-form');
   Array.prototype.forEach.call(forms,function(form){
-    var sent=form.querySelector('.sent'),txt=form.querySelector('.sent-text'),copyBtn=form.querySelector('.sent-copy');
+    var status=form.querySelector('.form-status'),btn=form.querySelector('button[type=submit]'),label=btn.textContent;
+    function show(msg,kind){status.textContent=msg;status.className='form-status '+kind;status.hidden=false;}
     form.addEventListener('submit',function(e){
       e.preventDefault();
       if(!form.reportValidity()){return;}
       var g=function(n){var el=form.querySelector('[name="'+n+'"]');return el?el.value.trim():'';};
-      var body=T.name+': '+g('name')+'\n'+T.phone+': '+g('phone')+'\n'+T.email+': '+g('email')+(g('message')?'\n\n'+g('message'):'');
-      txt.value=body;
-      form.querySelector('.sent-note').textContent=T.note;
-      form.querySelector('.sent-mail').href='mailto:info@prdsbi.com?subject='+encodeURIComponent(T.subject)+'&body='+encodeURIComponent(body);
-      sent.hidden=false;
-    });
-    copyBtn.addEventListener('click',function(){
-      var done=function(){copyBtn.textContent=T.copied;};
-      var fb=function(){txt.focus();txt.select();};
-      try{navigator.clipboard.writeText(txt.value).then(done,fb);}catch(err){fb();}
+      if(g('_honey')){return;}
+      var data={};data[T.name]=g('name');data[T.phone]=g('phone');data[T.email]=g('email');data[T.msg]=g('message');
+      data._subject=T.subject+' — '+g('name');data._replyto=g('email');data._template='table';data._captcha='false';
+      btn.disabled=true;btn.textContent=T.sending;status.hidden=true;
+      fetch(FORM_URL,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+        .then(function(r){return r.json().then(function(j){if(!r.ok||String(j.success)!=='true'){throw new Error(j.message||r.status);}});})
+        .then(function(){form.reset();show(T.ok,'ok');})
+        .catch(function(){show(T.fail,'err');})
+        .then(function(){btn.disabled=false;btn.textContent=label;});
     });
   });
 })();
