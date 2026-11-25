@@ -17,8 +17,8 @@ const LANGS = {
   },
   en: {
     out: 'en/index.html', dir: 'ltr', locale: 'en_US', url: SITE + '/en/',
-    title: 'Pardes Investigations — Private Investigations & Business Intelligence',
-    desc: 'Pardes Investigations is a private investigation and business intelligence firm licensed by the Israeli Ministry of Justice: financial investigations, asset tracing, due diligence, background checks and cyber investigations, in Israel and abroad.'
+    title: 'P.R.D.S Investigations — Private Investigations & Business Intelligence',
+    desc: 'P.R.D.S Investigations is a private investigation and business intelligence firm licensed by the Israeli Ministry of Justice: financial investigations, asset tracing, due diligence, background checks and cyber investigations, in Israel and abroad.'
   }
 };
 

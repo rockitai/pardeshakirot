@@ -1,7 +1,7 @@
 (function(){
   var EN=document.documentElement.lang==='en';
   var T=EN?{
-    site:'Pardes Investigations',
+    site:'P.R.D.S Investigations',
     views:{home:'Private Investigations & Business Intelligence',about:'About the Firm',services:'Services',cases:'Case Studies',contact:'Contact Us',privacy:'Privacy Policy',terms:'Terms of Use',accessibility:'Accessibility Statement'},
     name:'Name',phone:'Phone',email:'Email',msg:'Message',subject:'Website inquiry',
     sending:'Sending…',ok:'Thank you! Your inquiry has been received and we will get back to you shortly.',
