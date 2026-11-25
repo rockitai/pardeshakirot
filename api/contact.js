@@ -3,6 +3,7 @@
 //   BREVO_API_KEY   – Brevo API key (required)
 //   CONTACT_TO      – where inquiries go (default info@prdsbi.com)
 //   CONTACT_SENDER  – a sender address verified in Brevo (default info@prdsbi.com)
+//   CONTACT_CC      – optional, comma-separated addresses that get a copy of every inquiry
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const clip = (s, n) => String(s == null ? '' : s).trim().slice(0, n);
 
@@ -22,6 +23,7 @@ module.exports = async (req, res) => {
 
   const to = process.env.CONTACT_TO || 'info@prdsbi.com';
   const sender = process.env.CONTACT_SENDER || 'info@prdsbi.com';
+  const cc = (process.env.CONTACT_CC || '').split(',').map(s => s.trim()).filter(s => s && s.toLowerCase() !== to.toLowerCase());
   const L = lang === 'en'
     ? { subject: 'Website inquiry (English site)', name: 'Name', phone: 'Phone', email: 'Email', message: 'Message' }
     : { subject: 'פנייה חדשה מהאתר', name: 'שם', phone: 'טלפון', email: 'דוא״ל', message: 'הודעה' };
@@ -37,6 +39,7 @@ module.exports = async (req, res) => {
       body: JSON.stringify({
         sender: { name: 'P.R.D.S Website', email: sender },
         to: [{ email: to }],
+        ...(cc.length ? { cc: cc.map(email => ({ email })) } : {}),
         replyTo: { email, name },
         subject: `${L.subject} — ${name}`,
         htmlContent: html
