@@ -41,8 +41,8 @@
     burger.setAttribute('aria-expanded',open?'true':'false');
   });
 
-  /* forms: sent to info@prdsbi.com through FormSubmit (formsubmit.co) */
-  var FORM_URL='https://formsubmit.co/ajax/info@prdsbi.com';
+  /* forms: sent to info@prdsbi.com by the site's own function (api/contact.js, through Brevo) */
+  var FORM_URL='/api/contact';
   var forms=document.querySelectorAll('.lead-form');
   Array.prototype.forEach.call(forms,function(form){
     var status=form.querySelector('.form-status'),btn=form.querySelector('button[type=submit]'),label=btn.textContent;
@@ -52,11 +52,10 @@
       if(!form.reportValidity()){return;}
       var g=function(n){var el=form.querySelector('[name="'+n+'"]');return el?el.value.trim():'';};
       if(g('_honey')){return;}
-      var data={};data[T.name]=g('name');data[T.phone]=g('phone');data[T.email]=g('email');data[T.msg]=g('message');
-      data._subject=T.subject+' — '+g('name');data._replyto=g('email');data._template='table';data._captcha='false';
+      var data={name:g('name'),phone:g('phone'),email:g('email'),message:g('message'),lang:EN?'en':'he'};
       btn.disabled=true;btn.textContent=T.sending;status.hidden=true;
       fetch(FORM_URL,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
-        .then(function(r){return r.json().then(function(j){if(!r.ok||String(j.success)!=='true'){throw new Error(j.message||r.status);}});})
+        .then(function(r){return r.json().then(function(j){if(!r.ok||!j.ok){throw new Error(j.error||r.status);}});})
         .then(function(){form.reset();show(T.ok,'ok');})
         .catch(function(){show(T.fail,'err');})
         .then(function(){btn.disabled=false;btn.textContent=label;});
